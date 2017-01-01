@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "969105153506",
+    "firebase_url": "https://kirontestapp.firebaseio.com",
+    "project_id": "kirontestapp",
+    "storage_bucket": "kirontestapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969105153506:android:6b066ee9c2c13860",
+        "android_client_info": {
+          "package_name": "ngo.kiron.testapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969105153506-ekod6ooem4mo923l9aq86354ijlskqq6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ngo.kiron.testapp",
+            "certificate_hash": "C1A2BE322AD046A832E796D3E6565165460F287F"
+          }
+        },
+        {
+          "client_id": "969105153506-d3g2rslivtlkkvdfi34v2h2a7s54n4ir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMoHJNH_SxDjoAxnr9044SfEtGZoPAIrE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969105153506-d3g2rslivtlkkvdfi34v2h2a7s54n4ir.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "969105153506-3cdeb1bv8d9h1tc8kl7hjvto1gotrmr8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ngo.kiron.testapp"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
