@@ -12,12 +12,14 @@ import {
 } from 'react-native';
 
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
-
+import * as firebase from 'firebase';
 // Import components
 const NotificationList = require('./NotificationList');
 
 // Import modules
 const firebaseApp = require('../modules/Firebase').firebaseApp;
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+// TODO(liezl): Add OAuth options that will allow a forgot your password thru kiron?
 
 // Import styles
 const styles = require('../styles.js');
@@ -28,7 +30,7 @@ class Login extends Component {
     this.state = {
       user: null
     };
-    this.usersRef = firebaseApp.getRef().child('users');
+    //this.usersRef = firebaseApp.database().ref().child('users');
   }
 
   componentDidMount() {
@@ -83,12 +85,51 @@ class Login extends Component {
     }
   }
 
+
+
   _signIn() {
     GoogleSignin.signIn()
     .then((user) => {
       console.log(user);
-      // TODO(liezl): sync user with server (add to users list if necessary)
-      // TODO(liezl): maybe add first login behavior if this is the first time user logs in
+      var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
+        console.log({'firebase: ': firebaseUser});
+        unsubscribe();
+        var isUserEqual = function (googleUser, firebaseUser) {
+          if (firebaseUser) {
+            var providerData = firebaseUser.providerData;
+            for (var i = 0; i < providerData.length; i++) {
+              if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+                  providerData[i].uid === googleUser.id) {
+                // We don't need to reauth the Firebase connection.
+                return true;
+              }
+            }
+          }
+          return false;
+        }
+
+        // Check if we are already signed into Firebase with the correct user.
+        if (!isUserEqual(user, firebaseUser)) {
+          // Build Firebase credential with the Google ID token.
+          var credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
+          // Sign in with the credential from the Google user.
+          console.log(credential);
+          firebase.auth().signInWithCredential(credential).catch(function(error) {
+            console.log(error);
+
+            // TODO: Fancier error handling here.
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
+            // // The email of the user's account used.
+            // var email = error.email;
+            // // The firebase.auth.AuthCredential type that was used.
+            // var credential = error.credential;
+          });
+        } else {
+          console.log('User already signed-in Firebase.');
+        }
+      });
+
       this.setState({user: user});
     })
     .catch((err) => {

@@ -27,11 +27,7 @@ class NotificationList extends Component {
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
     };
-    this.notifsRef = this.getRef().child('notifs');
-  }
-
-  getRef() {
-    return firebaseApp.database().ref();
+    this.notifsRef = firebaseApp.database().ref().child('notifs');
   }
 
   listenForNotifs(notifsRef) {
