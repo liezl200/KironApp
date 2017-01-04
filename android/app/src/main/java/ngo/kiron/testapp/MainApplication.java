@@ -12,6 +12,8 @@ import com.facebook.soloader.SoLoader;
 
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 
+import com.evollu.react.fcm.FIRMessagingPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new FIRMessagingPackage(), // react-native-fcm
           new RNGoogleSigninPackage() // react-native-google-signin package setup
       );
     }

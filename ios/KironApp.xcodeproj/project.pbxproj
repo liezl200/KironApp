@@ -45,6 +45,7 @@
 		5D39EA8DDF724BD8A623F395 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3AF3B2A253432BA76DBF9C /* SafariServices.framework */; };
 		8A537ABD2521432B9DA1347A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338B11B5D29A4275B4809243 /* SystemConfiguration.framework */; };
 		C1170893FF044FB5B434F855 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18120347B1A54DA280816661 /* AddressBook.framework */; };
+		E0CCFB48D0C347C8840CCB19 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56831567E5204042BD7D6DDA /* libRNFIRMessaging.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +230,8 @@
 		DE3AF3B2A253432BA76DBF9C /* SafariServices.framework */ = {isa = PBXFileReference; name = "SafariServices.framework"; path = "System/Library/Frameworks/SafariServices.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		338B11B5D29A4275B4809243 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		18120347B1A54DA280816661 /* AddressBook.framework */ = {isa = PBXFileReference; name = "AddressBook.framework"; path = "System/Library/Frameworks/AddressBook.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		AC34A45DAD5540A0BA431310 /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; name = "RNFIRMessaging.xcodeproj"; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		56831567E5204042BD7D6DDA /* libRNFIRMessaging.a */ = {isa = PBXFileReference; name = "libRNFIRMessaging.a"; path = "libRNFIRMessaging.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +275,7 @@
 				5D39EA8DDF724BD8A623F395 /* SafariServices.framework in Frameworks */,
 				8A537ABD2521432B9DA1347A /* SystemConfiguration.framework in Frameworks */,
 				C1170893FF044FB5B434F855 /* AddressBook.framework in Frameworks */,
+				E0CCFB48D0C347C8840CCB19 /* libRNFIRMessaging.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +428,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				63409F97D57D4ACB8808729A /* RNGoogleSignin.xcodeproj */,
+				AC34A45DAD5540A0BA431310 /* RNFIRMessaging.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -943,6 +948,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -984,6 +990,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

@@ -11,6 +11,7 @@
     "react": "15.4.1",
     "react-native": "0.39.2",
     "react-native-facebook-login": "^1.4.0",
+    "react-native-fcm": "^2.5.5",
     "react-native-firebase-auth": "0.0.11",
     "react-native-google-signin": "^0.8.1"
   },

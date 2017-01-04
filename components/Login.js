@@ -13,6 +13,7 @@ import {
 
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import * as firebase from 'firebase';
+
 // Import components
 const NotificationList = require('./NotificationList');
 
