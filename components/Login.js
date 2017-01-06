@@ -53,17 +53,18 @@ class Login extends Component {
 
     if (this.state.user) {
       return (
-        <View style={styles.container}>
-          <NotificationList />
-          <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>Welcome {this.state.user.name}</Text>
-          <Text>Your email is: {this.state.user.email}</Text>
+        <NotificationList />
+        // <View style={styles.container}>
 
-          <TouchableOpacity onPress={() => {this._signOut(); }}>
-            <View style={{marginTop: 50}}>
-              <Text>Log out</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        //   <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>Welcome {this.state.user.name}</Text>
+        //   <Text>Your email is: {this.state.user.email}</Text>
+
+        //   <TouchableOpacity onPress={() => {this._signOut(); }}>
+        //     <View style={{marginTop: 50}}>
+        //       <Text>Log out</Text>
+        //     </View>
+        //   </TouchableOpacity>
+        // </View>
       );
     }
   }

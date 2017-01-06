@@ -20,7 +20,7 @@ const styles = require('../styles.js');
 const firebaseApp = require('../modules/Firebase').firebaseApp;
 
 class NotificationList extends Component {
-	constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       dataSource: new ListView.DataSource({
@@ -91,7 +91,7 @@ class NotificationList extends Component {
   _renderNotif(notif) {
 
     const onPress = () => {
-    	this.notifsRef.child(notif._key).remove();
+      this.notifsRef.child(notif._key).remove();
       // AlertIOS.alert(
       //   'Complete',
       //   null,
