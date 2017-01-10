@@ -25,21 +25,22 @@ const ActionButton = require('./ActionButton');
 const ListNotif = require('./ListNotif');
 const NotificationModal = require('./NotificationModal');
 
-const menuList = [
-  {name: 'Campus', icon: 'school'},
-  {name: 'Settings', icon: 'settings'},
-  {name: 'Support', icon: 'supervisor-account'},
-  {name: 'Help', icon: 'help'},
-  {name: 'Logout', icon: 'power-settings-new'}
-];
-
 const styles = require('../styles.js');
 
 const firebaseApp = require('../modules/Firebase').firebaseApp;
 
 class NotificationList extends Component {
+
+
   constructor(props) {
     super(props);
+    this.menuList = [
+      {name: 'Campus', icon: 'school'},
+      {name: 'Settings', icon: 'settings'},
+      {name: 'Support', icon: 'supervisor-account'},
+      {name: 'Help', icon: 'help'},
+      {name: 'Logout', icon: 'power-settings-new', onPress: this.props.signOut}
+    ];
     this.state = {
       isOpen: false,
       modalVisible: false,
@@ -89,9 +90,9 @@ class NotificationList extends Component {
       <View style={{flex: 1, backgroundColor: '#ededed', paddingTop: 50}}>
         <List containerStyle={{marginBottom: 20}}>
         {
-          menuList.map((l, i) => (
+          this.menuList.map((l, i) => (
             <ListItem
-              onPress={() => console.log('Pressed')}
+              onPress={l.onPress}
               key={i}
               title={l.name}
               leftIcon={{name: l.icon}}

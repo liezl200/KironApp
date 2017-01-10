@@ -126,12 +126,18 @@ TODO:
 - add navigation menu
 	- x add rough side menu with button
 	- x clean up side menu list: Campus, Settings, Support, Help, Logout
-	- add side menu button to status bar
+	- x add side menu button to status bar
+	- change side menu button to icon
+	- fix open / close behavior
 	- hook up side menu button to trigger side menu
 - add modal on notification press
-	- add rough modals on notif press: to separate the components, probably have to use a navigator to display it
+	- x add rough modals on notif press: to separate the components, probably have to use a navigator to display it
+	- fix modal style
 	- add blur component
-- notification text
+- add logout function
+- notification title + text
+	- change data schema and parts that interface with backend
+	- title + subtitle list view
 - consolidate styles
 - restrict user domain
 	- read how to restrict user domain google sign in
