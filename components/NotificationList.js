@@ -88,34 +88,40 @@ class NotificationList extends Component {
               key={i}
               title={l.name}
               leftIcon={{name: l.icon}}
-            />
+              hideChevron />
           ))
         }
         </List>
       </View>
-    )
+    );
+    const MenuButton = (
+      <Button
+        raised
+        onPress={this.toggleSideMenu.bind(this)}
+        icon={{name: 'dehaze'}}
+        title='RAISED WITH ICON' />
+    );
 
     return (
       <SideMenu
-          isOpen={this.state.isOpen}
-          menu={MenuComponent}>
-          <View style={styles.container}>
+        isOpen = {this.state.isOpen}
+        menu = {MenuComponent}>
+
+        <View style = {styles.container}>
 
 
-        <StatusBar title="Notifications" />
+        <StatusBar
+          title="Notifications"
+          menuButton = {MenuButton} />
 
         <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderNotif.bind(this)}
+          dataSource = {this.state.dataSource}
+          renderRow = {this._renderNotif.bind(this)}
           enableEmptySections={true}
-          style={styles.listview}/>
+          style = {styles.listview} />
 
-        <ActionButton onPress={this._addNotif.bind(this)} title="Add" />
-        <Button
-          raised
-          onPress={this.toggleSideMenu.bind(this)}
-          icon={{name: 'dehaze'}}
-          title='RAISED WITH ICON' />
+        <ActionButton onPress = {this._addNotif.bind(this)} title="Add" />
+
       </View>
         </SideMenu>
 

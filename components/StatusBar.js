@@ -10,6 +10,7 @@ class StatusBar extends Component {
       <View>
         <View style={styles.statusbar}/>
         <View style={styles.navbar}>
+          {this.props.menuButton}
           <Text style={styles.navbarTitle}>{this.props.title}</Text>
         </View>
       </View>

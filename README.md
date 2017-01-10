@@ -125,7 +125,7 @@ TODO:
 - familiarize with react native elements, read code examples
 - add navigation menu
 	- x add rough side menu with button
-	- clean up side menu list: Campus, Settings, Support, Help, Logout
+	- x clean up side menu list: Campus, Settings, Support, Help, Logout
 	- add side menu button to status bar
 	- hook up side menu button to trigger side menu
 - add modal on notification press
