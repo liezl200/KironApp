@@ -8,7 +8,7 @@ import {
   Text,
   ListView,
   View,
-  AlertIOS
+  Modal
   } from 'react-native';
 
 import {
@@ -23,6 +23,8 @@ import {
 const StatusBar = require('./StatusBar');
 const ActionButton = require('./ActionButton');
 const ListNotif = require('./ListNotif');
+const NotificationModal = require('./NotificationModal');
+
 const menuList = [
   {name: 'Campus', icon: 'school'},
   {name: 'Settings', icon: 'settings'},
@@ -40,12 +42,17 @@ class NotificationList extends Component {
     super(props);
     this.state = {
       isOpen: false,
+      modalVisible: false,
+      selectedNotif: {},
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
     };
     this.notifsRef = firebaseApp.database().ref().child('notifs');
-    this._toggleSideMenu = this._toggleSideMenu.bind(this);
+  }
+
+  _setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
 
   _toggleSideMenu () {
@@ -94,6 +101,7 @@ class NotificationList extends Component {
         </List>
       </View>
     );
+
     const MenuButton = (
       <Button
         raised
@@ -113,6 +121,25 @@ class NotificationList extends Component {
         <StatusBar
           title="Notifications"
           menuButton = {MenuButton} />
+        <Modal
+          animationType={"fade"}
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {alert("Modal has been closed.")}}
+          >
+         <View style={{marginTop: 22}}>
+          <View>
+            <Text>{this.state.selectedNotif.title}</Text>
+
+            <TouchableHighlight onPress={() => {
+              this._setModalVisible(!this.state.modalVisible)
+            }}>
+              <Text>Hide Modal</Text>
+            </TouchableHighlight>
+
+          </View>
+         </View>
+        </Modal>
 
         <ListView
           dataSource = {this.state.dataSource}
@@ -136,9 +163,11 @@ class NotificationList extends Component {
 
     const onPress = () => {
       // Pop open notification modal.
-
-
-    };
+      this._setModalVisible(true);
+      this.setState({
+        selectedNotif: notif
+      });
+    }
 
     return (
       <ListNotif notif={notif} onPress={onPress} />

@@ -129,7 +129,7 @@ TODO:
 	- add side menu button to status bar
 	- hook up side menu button to trigger side menu
 - add modal on notification press
-	- add rough modals on notif press
+	- add rough modals on notif press: to separate the components, probably have to use a navigator to display it
 	- add blur component
 - notification text
 - consolidate styles
