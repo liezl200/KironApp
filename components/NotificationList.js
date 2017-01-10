@@ -45,10 +45,10 @@ class NotificationList extends Component {
       })
     };
     this.notifsRef = firebaseApp.database().ref().child('notifs');
-    this.toggleSideMenu = this.toggleSideMenu.bind(this);
+    this._toggleSideMenu = this._toggleSideMenu.bind(this);
   }
 
-  toggleSideMenu () {
+  _toggleSideMenu () {
     this.setState({
       isOpen: !this.state.isOpen
     })
@@ -97,7 +97,7 @@ class NotificationList extends Component {
     const MenuButton = (
       <Button
         raised
-        onPress={this.toggleSideMenu.bind(this)}
+        onPress={this._toggleSideMenu.bind(this)}
         icon={{name: 'dehaze'}}
         title='RAISED WITH ICON' />
     );
@@ -120,7 +120,7 @@ class NotificationList extends Component {
           enableEmptySections={true}
           style = {styles.listview} />
 
-        <ActionButton onPress = {this._addNotif.bind(this)} title="Add" />
+        <ActionButton onPress = {this._clearNotifs.bind(this)} title="Clear All" />
 
       </View>
         </SideMenu>
@@ -128,15 +128,15 @@ class NotificationList extends Component {
     )
   }
 
-  _addNotif() {
+  _clearNotifs() {
 
   }
 
   _renderNotif(notif) {
 
     const onPress = () => {
-      // this.notifsRef.child(notif._key).remove();
       // Pop open notification modal.
+
 
     };
 
