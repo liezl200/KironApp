@@ -23,12 +23,14 @@ import {
 const StatusBar = require('./StatusBar');
 const ActionButton = require('./ActionButton');
 const ListNotif = require('./ListNotif');
-const list = [
-  {
-    name: 'Amy Farha',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vice President'
-  }];
+const menuList = [
+  {name: 'Campus', icon: 'school'},
+  {name: 'Settings', icon: 'settings'},
+  {name: 'Support', icon: 'supervisor-account'},
+  {name: 'Help', icon: 'help'},
+  {name: 'Logout', icon: 'power-settings-new'}
+];
+
 const styles = require('../styles.js');
 
 const firebaseApp = require('../modules/Firebase').firebaseApp;
@@ -80,14 +82,12 @@ class NotificationList extends Component {
       <View style={{flex: 1, backgroundColor: '#ededed', paddingTop: 50}}>
         <List containerStyle={{marginBottom: 20}}>
         {
-          list.map((l, i) => (
+          menuList.map((l, i) => (
             <ListItem
-              roundAvatar
               onPress={() => console.log('Pressed')}
-              avatar={l.avatar_url}
               key={i}
               title={l.name}
-              subtitle={l.subtitle}
+              leftIcon={{name: l.icon}}
             />
           ))
         }
@@ -114,7 +114,7 @@ class NotificationList extends Component {
         <Button
           raised
           onPress={this.toggleSideMenu.bind(this)}
-          icon={{name: 'cached'}}
+          icon={{name: 'dehaze'}}
           title='RAISED WITH ICON' />
       </View>
         </SideMenu>
