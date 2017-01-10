@@ -14,6 +14,10 @@ import {
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import * as firebase from 'firebase';
 
+import {
+  Button
+} from 'react-native-elements';
+
 // Import components
 const NotificationList = require('./NotificationList');
 
@@ -39,6 +43,7 @@ class Login extends Component {
   }
 
   render() {
+
     if (!this.state.user) {
       return (
         <View style={styles.loginContainer}>

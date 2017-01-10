@@ -116,3 +116,25 @@ AUTH FILES
 KironApp/android/app/google-services.json
 	TODO before release: REMOVE CERTIFICATE HASH PORTION??
 GoogleService-Info.plist
+
+REACT NATIVE ELEMENTS
+npm i react-native-vector-icons --save && react-native link react-native-vector-icons
+
+
+TODO:
+- familiarize with react native elements, read code examples
+- add navigation menu
+	- x add rough side menu with button
+	- clean up side menu list: Campus, Settings, Support, Help, Logout
+	- add side menu button to status bar
+	- hook up side menu button to trigger side menu
+- add modal on notification press
+	- add rough modals on notif press
+	- add blur component
+- notification text
+- consolidate styles
+- restrict user domain
+	- read how to restrict user domain google sign in
+	- read how to handle domain restriction errors
+	- implement domain restriction
+	- implement alert in case of wrong email domain
