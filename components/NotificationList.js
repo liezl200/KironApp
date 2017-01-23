@@ -38,7 +38,7 @@ class NotificationList extends Component {
       {name: 'Campus', icon: 'school'},
       {name: 'Settings', icon: 'settings'},
       {name: 'Support', icon: 'supervisor-account'},
-      {name: 'Help', icon: 'help'},
+      {name: 'Help', icon: 'help', onPress: null},
       {name: 'Logout', icon: 'power-settings-new', onPress: this.props.signOut}
     ];
     this.state = {
@@ -104,11 +104,9 @@ class NotificationList extends Component {
     );
 
     const MenuButton = (
-      <Button
-        raised
+      <Icon
         onPress={this._toggleSideMenu.bind(this)}
-        icon={{name: 'dehaze'}}
-        title='RAISED WITH ICON' />
+        name= 'menu' />
     );
 
     return (
@@ -128,18 +126,17 @@ class NotificationList extends Component {
           visible={this.state.modalVisible}
           onRequestClose={() => {alert("Modal has been closed.")}}
           >
-         <View style={{marginTop: 22}}>
-          <View>
-            <Text>{this.state.selectedNotif.title}</Text>
+          <View style={{flex: 1, justifyContent: 'center', padding: 20, backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+            <View style={{borderRadius: 10, alignItems: 'center', backgroundColor: '#fff', padding: 20}}>
+              <Text>{this.state.selectedNotif.title}</Text>
 
-            <TouchableHighlight onPress={() => {
-              this._setModalVisible(!this.state.modalVisible)
-            }}>
-              <Text>Hide Modal</Text>
-            </TouchableHighlight>
-
+              <TouchableHighlight onPress={() => {
+                this._setModalVisible(!this.state.modalVisible)
+              }}>
+                <Text>Hide Modal</Text>
+              </TouchableHighlight>
+            </View>
           </View>
-         </View>
         </Modal>
 
         <ListView

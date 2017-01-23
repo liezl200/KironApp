@@ -8,9 +8,13 @@ class StatusBar extends Component {
   render() {
     return (
       <View>
+
         <View style={styles.statusbar}/>
+
         <View style={styles.navbar}>
-          {this.props.menuButton}
+          <View style={styles.navbarIcon}>
+            {this.props.menuButton}
+          </View>
           <Text style={styles.navbarTitle}>{this.props.title}</Text>
         </View>
       </View>

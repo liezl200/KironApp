@@ -124,7 +124,7 @@ class Login extends Component {
           firebase.auth().signInWithCredential(credential).catch(function(error) {
             console.log(error);
 
-            // TODO: Fancier error handling here.
+            // TODO: Fancier error handling here / implement domain restriction
             // var errorCode = error.code;
             // var errorMessage = error.message;
             // // The email of the user's account used.

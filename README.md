@@ -122,19 +122,19 @@ npm i react-native-vector-icons --save && react-native link react-native-vector-
 
 
 TODO:
-- familiarize with react native elements, read code examples
-- add navigation menu
+- x familiarize with react native elements, read code examples
+- x add navigation menu
 	- x add rough side menu with button
 	- x clean up side menu list: Campus, Settings, Support, Help, Logout
 	- x add side menu button to status bar
-	- change side menu button to icon
+	- change side menu button to touchable highlight icon
 	- fix open / close behavior
-	- hook up side menu button to trigger side menu
-- add modal on notification press
+	- x hook up side menu button to trigger side menu
+- x add modal on notification press
 	- x add rough modals on notif press: to separate the components, probably have to use a navigator to display it
-	- fix modal style
+	- x fix modal style
 	- add blur component
-- add logout function
+- x add logout functionality
 - notification title + text
 	- change data schema and parts that interface with backend
 	- title + subtitle list view

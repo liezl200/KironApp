@@ -54,6 +54,10 @@ var styles = StyleSheet.create({
     height: 44,
     flexDirection: 'row'
   },
+  navbarIcon: {
+    marginTop: 7,
+    marginLeft: 9
+  },
   navbarTitle: {
     color: '#444',
     fontSize: 16,
