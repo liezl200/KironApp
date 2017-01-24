@@ -89,6 +89,7 @@ class Login extends Component {
     }
     catch(err) {
       console.log("Google signin error", err.code, err.message);
+      throw err;
     }
   }
 

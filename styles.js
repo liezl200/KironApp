@@ -45,12 +45,10 @@ var styles = StyleSheet.create({
     fontSize: 16,
   },
   navbar: {
-    alignItems: 'center',
     backgroundColor: '#fff',
     borderBottomColor: '#eee',
     borderColor: 'transparent',
     borderWidth: 1,
-    justifyContent: 'center',
     height: 44,
     flexDirection: 'row'
   },
