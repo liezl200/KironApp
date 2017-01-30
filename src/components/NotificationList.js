@@ -93,6 +93,7 @@ class NotificationList extends Component {
   }
 
   render() {
+    console.log(this.props.user);
     const MenuComponent = (
       <View style={{flex: 1, backgroundColor: '#ededed', paddingTop: 50}}>
         <List containerStyle={{marginBottom: 20}}>

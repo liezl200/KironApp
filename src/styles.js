@@ -49,6 +49,17 @@ var styles = StyleSheet.create({
     marginTop: 25,
     marginLeft: 25,
   },
+  userAvatar: {
+    borderRadius: 15,
+    height: 30,
+    width: 30,
+  },
+  userAvatarContainer: {
+    position: 'absolute',
+    marginTop: 25,
+    right: 20,
+    top: 2,
+  },
   navbarTitle: {
     color: '#444',
     fontSize: 16,
@@ -59,7 +70,7 @@ var styles = StyleSheet.create({
     height: 25,
     justifyContent: 'flex-end',
     flexDirection: 'row',
-    paddingRight: 5,
+    paddingRight: 20,
     paddingTop: 5,
   },
   center: {

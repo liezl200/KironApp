@@ -2,8 +2,8 @@
 import React, {Component} from 'react';
 import ReactNative from 'react-native';
 const styles = require('../styles.js')
-const { StyleSheet, Text, View} = ReactNative;
-import {Grid, Col, Row} from 'react-native-elements';
+const { StyleSheet, Text, View, Image} = ReactNative;
+
 class StatusBar extends Component {
   render() {
     return (
@@ -18,6 +18,9 @@ class StatusBar extends Component {
         </View>
         <View style={styles.navbarIcon}>
           {this.props.menuButton}
+        </View>
+        <View style={styles.userAvatarContainer}>
+          <Image style={styles.userAvatar} source={{uri:this.props.user.photo}} />
         </View>
       </View>
     );
