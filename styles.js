@@ -81,11 +81,17 @@ var styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
   },
-  modalContainer: {
+  modalBackground: {
     flex: 1,
     justifyContent: 'center',
     padding: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContainer: {
+    borderRadius: 10,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 20
   },
   notifContainer: {
     borderWidth: 1,

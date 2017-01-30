@@ -32,8 +32,8 @@ class NotificationModal extends Component {
           visible={this.state.modalVisible}
           onRequestClose={() => {alert("Modal has been closed.")}} >
 
-          <View style={styles.modalContainer}>
-            <View style={{borderRadius: 10, alignItems: 'center', backgroundColor: '#fff', padding: 20}}>
+          <View style={styles.modalBackground}>
+            <View style={styles.modalContainer}>
               <Card
                 title={this.state.selectedNotif == null? 'Title' : this.state.selectedNotif.title}
                 image={{uri:'http://thedomeproject.net/assets/img/editorials/kiron%20student.jpg'}}>
@@ -46,13 +46,14 @@ class NotificationModal extends Component {
                   fontFamily='Lato'
                   buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                   title='VIEW NOW' />
+                <TouchableHighlight onPress={() => {
+                  this._setModalVisible(!this.state.modalVisible, this.state.selectedNotif)
+                }}>
+                  <Text>Hide Modal</Text>
+                </TouchableHighlight>
               </Card>
 
-              <TouchableHighlight onPress={() => {
-                this._setModalVisible(!this.state.modalVisible, this.state.selectedNotif)
-              }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
+
             </View>
           </View>
 
