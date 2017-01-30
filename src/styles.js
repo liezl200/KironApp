@@ -94,36 +94,53 @@ var styles = StyleSheet.create({
     padding: 20
   },
   notifContainer: {
-    borderWidth: 1,
-    borderRadius: 3,
-    shadowColor: "#000",
+    backgroundColor: '#dbd6d6',
+    borderRadius: 5,
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
+    marginLeft: 20,
+    marginRight: 20,
     marginTop: 10,
+    marginBottom: 10,
   },
   notifItem: {
-    padding: 5,
+    height: 70,
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    borderColor: '#ddd',
     position: 'relative',
   },
+  notifItemChevron: {
+    width: 30,
+    borderRadius: 5,
+    borderBottomLeftRadius: 0,
+    borderTopLeftRadius: 0,
+    backgroundColor: 'rgba(150, 150, 150, 0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+  },
   notifItemContent: {
+    padding: 5,
+    flex: 1,
     justifyContent: 'flex-start',
     flexDirection: 'column',
-  },
-  notifItemTitle: {
-    fontSize: 14,
-    fontWeight: 'bold',
-
   },
   notifItemText: {
     fontSize: 12,
   },
+  notifItemTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+
+
 
 
 });

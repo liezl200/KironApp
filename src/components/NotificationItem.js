@@ -3,6 +3,10 @@ import ReactNative from 'react-native';
 const styles = require('../styles.js')
 const { View, TouchableHighlight, Text } = ReactNative;
 
+import {
+  Icon
+} from 'react-native-elements';
+
 class NotificationItem extends Component {
   render() {
     return (
@@ -14,6 +18,11 @@ class NotificationItem extends Component {
             	<Text style={styles.notifItemTitle}>{this.props.notif.title}</Text>
               <Text style={styles.notifItemText}>{this.props.notif.text}</Text>
             </ View>
+
+            <View style={styles.notifItemChevron}>
+              <Icon
+                name= 'chevron-right' color='#444' />
+            </View>
           </View>
         </View>
       </TouchableHighlight>

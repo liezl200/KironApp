@@ -134,16 +134,10 @@ class NotificationList extends Component {
             enableEmptySections={true}
             style = {styles.listview} />
 
-          <ActionButton onPress = {this._clearNotifs.bind(this)} title="Clear All" />
-
         </View>
       </SideMenu>
 
     )
-  }
-
-  _clearNotifs() {
-
   }
 
   _renderNotif(notif) {
