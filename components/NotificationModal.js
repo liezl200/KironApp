@@ -7,6 +7,8 @@ import {
   Card
 } from 'react-native-elements';
 
+const styles = require('../styles.js');
+
 class NotificationModal extends Component {
 
   constructor(props) {
@@ -30,7 +32,7 @@ class NotificationModal extends Component {
           visible={this.state.modalVisible}
           onRequestClose={() => {alert("Modal has been closed.")}} >
 
-          <View style={{flex: 1, justifyContent: 'center', padding: 20, backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+          <View style={styles.modalContainer}>
             <View style={{borderRadius: 10, alignItems: 'center', backgroundColor: '#fff', padding: 20}}>
               <Card
                 title={this.state.selectedNotif == null? 'Title' : this.state.selectedNotif.title}
