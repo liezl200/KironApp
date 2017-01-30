@@ -9,7 +9,11 @@ class NotificationItem extends Component {
       <TouchableHighlight onPress={this.props.onPress}>
         <View style={styles.notifContainer}>
           <View style={styles.notifItem}>
-          	<Text style={styles.liText}>{this.props.notif.title}</Text>
+
+            <View style={styles.notifItemContent}>
+            	<Text style={styles.notifItemTitle}>{this.props.notif.title}</Text>
+              <Text style={styles.notifItemText}>{this.props.notif.text}</Text>
+            </ View>
           </View>
         </View>
       </TouchableHighlight>

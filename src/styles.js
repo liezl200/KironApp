@@ -111,7 +111,20 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     borderColor: '#ddd',
     position: 'relative',
-  }
+  },
+  notifItemContent: {
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+  },
+  notifItemTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+
+  },
+  notifItemText: {
+    fontSize: 12,
+  },
+
 
 });
 

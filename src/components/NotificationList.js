@@ -34,6 +34,7 @@ class NotificationList extends Component {
 
   constructor(props) {
     super(props);
+
     this.menuList = [
       {name: 'Campus', icon: 'school'},
       {name: 'Settings', icon: 'settings'},
@@ -41,15 +42,24 @@ class NotificationList extends Component {
       {name: 'Help', icon: 'help', onPress: null},
       {name: 'Logout', icon: 'power-settings-new', onPress: this.props.signOut}
     ];
+
     this.state = {
       isOpen: false,
       selectedNotif: {},
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
-      //notificationModal: new NotificationModal(),
     };
+
     this.notifsRef = firebaseApp.database().ref().child('notifs');
+
+    // TESTING ONLY add some test data
+    // var updates = {};
+    // for (var i = 0; i < 15; i++) {
+    //   var newNotifKey = firebaseApp.database().ref().child('notifs').push().key;
+    //   updates['/notifs/' + newNotifKey] = {title: 'Test Notification Header ' + i, text: 'This is test text for notif '+ i};
+    // }
+    // firebaseApp.database().ref().update(updates);
   }
 
   _toggleSideMenu () {
@@ -66,6 +76,7 @@ class NotificationList extends Component {
       snap.forEach((child) => {
         notifs.push({
           title: child.val().title,
+          text: child.val().text,
           _key: child.key
         });
       });
@@ -111,7 +122,6 @@ class NotificationList extends Component {
         menu = {MenuComponent}>
 
         <View style = {styles.container}>
-
 
           <StatusBar
             title="Notifications"
