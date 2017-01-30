@@ -71,7 +71,7 @@ var styles = StyleSheet.create({
     justifyContent: 'flex-end',
     flexDirection: 'row',
     paddingRight: 70,
-    paddingTop: 3,
+    paddingTop: 5,
   },
   statusText: {
     fontSize: 14,
@@ -118,7 +118,7 @@ var styles = StyleSheet.create({
     marginBottom: 10,
   },
   notifItem: {
-    height: 70,
+    maxHeight: 78,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     position: 'relative',
@@ -137,8 +137,21 @@ var styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
   },
-  notifItemContent: {
+  notifItemIndicatorContainer: {
+    width: 20,
+    borderRadius: 5,
+    borderBottomRightRadius: 0,
+    borderTopRightRadius: 0,
+    paddingTop: 10,
+    paddingLeft: 5,
+  },
+  notifItemContentWrapper: {
     padding: 5,
+  },
+  notifItemContent: {
+    backgroundColor: '#dbd6d6',
+    padding: 5,
+    marginBottom: 10,
     flex: 1,
     justifyContent: 'flex-start',
     flexDirection: 'column',

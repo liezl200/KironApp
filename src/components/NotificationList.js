@@ -77,6 +77,7 @@ class NotificationList extends Component {
         notifs.push({
           title: child.val().title,
           text: child.val().text,
+          read: child.val().read,
           _key: child.key
         });
       });
