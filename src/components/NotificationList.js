@@ -125,7 +125,8 @@ class NotificationList extends Component {
 
           <StatusBar
             title="Notifications"
-            menuButton = {MenuButton} />
+            menuButton={MenuButton}
+            user={this.props.user}/>
           <NotificationModal ref='modal'/>
 
           <ListView

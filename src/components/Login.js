@@ -58,7 +58,7 @@ class Login extends Component {
 
     if (this.state.user) {
       return (
-        <NotificationList signOut={this._signOut.bind(this)}/>
+        <NotificationList signOut={this._signOut.bind(this)} user={this.state.user}/>
         // <View style={styles.container}>
 
         //   <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>Welcome {this.state.user.name}</Text>

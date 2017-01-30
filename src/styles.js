@@ -28,15 +28,6 @@ var styles = StyleSheet.create({
   listview: {
     flex: 1,
   },
-  li: {
-    backgroundColor: '#fff',
-    borderBottomColor: '#eee',
-    borderColor: 'transparent',
-    borderWidth: 1,
-    paddingLeft: 16,
-    paddingTop: 14,
-    paddingBottom: 16,
-  },
   liContainer: {
     flex: 2,
   },
@@ -50,20 +41,26 @@ var styles = StyleSheet.create({
     borderColor: 'transparent',
     borderWidth: 1,
     height: 44,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   navbarIcon: {
-    marginTop: 7,
-    marginLeft: 9
+    position: 'absolute',
+    marginTop: 25,
+    marginLeft: 25,
   },
   navbarTitle: {
     color: '#444',
     fontSize: 16,
-    fontWeight: "500"
+    fontWeight: '500',
   },
   statusbar: {
     backgroundColor: '#fff',
-    height: 22,
+    height: 25,
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    paddingRight: 5,
+    paddingTop: 5,
   },
   center: {
     textAlign: 'center',
@@ -139,9 +136,6 @@ var styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
   },
-
-
-
 
 });
 
