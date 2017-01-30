@@ -10,7 +10,7 @@ class StatusBar extends Component {
       <View>
 
         <View style={styles.statusbar}>
-          <Text>{this.props.user.email}</Text>
+          <Text style={styles.statusText}>{this.props.user.email}</Text>
         </View>
         <View style={styles.navbar}>
 
