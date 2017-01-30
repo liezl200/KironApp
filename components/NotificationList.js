@@ -8,7 +8,6 @@ import {
   Text,
   ListView,
   View,
-  Modal
   } from 'react-native';
 
 import {
@@ -23,7 +22,7 @@ import {
 // Import components
 const StatusBar = require('./StatusBar');
 const ActionButton = require('./ActionButton');
-const ListNotif = require('./ListNotif');
+const NotificationItem = require('./NotificationItem');
 const NotificationModal = require('./NotificationModal');
 
 const styles = require('../styles.js');
@@ -44,17 +43,13 @@ class NotificationList extends Component {
     ];
     this.state = {
       isOpen: false,
-      modalVisible: false,
       selectedNotif: {},
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
-      })
+      }),
+      //notificationModal: new NotificationModal(),
     };
     this.notifsRef = firebaseApp.database().ref().child('notifs');
-  }
-
-  _setModalVisible(visible) {
-    this.setState({modalVisible: visible});
   }
 
   _toggleSideMenu () {
@@ -118,49 +113,21 @@ class NotificationList extends Component {
         <View style = {styles.container}>
 
 
-        <StatusBar
-          title="Notifications"
-          menuButton = {MenuButton} />
-        <Modal
-          animationType={"fade"}
-          transparent={true}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {alert("Modal has been closed.")}}
-          >
-          <View style={{flex: 1, justifyContent: 'center', padding: 20, backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
-            <View style={{borderRadius: 10, alignItems: 'center', backgroundColor: '#fff', padding: 20}}>
-              <Card
-                title={this.state.selectedNotif.title}
-                image={{uri:'http://thedomeproject.net/assets/img/editorials/kiron%20student.jpg'}}>
-                <Text style={{marginBottom: 10}}>
-                  The idea with React Native Elements is more about component structure than actual design.
-                </Text>
-                <Button
-                  icon={{name: 'code'}}
-                  backgroundColor='#03A9F4'
-                  fontFamily='Lato'
-                  buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                  title='VIEW NOW' />
-              </Card>
-              <TouchableHighlight onPress={() => {
-                this._setModalVisible(!this.state.modalVisible)
-              }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
+          <StatusBar
+            title="Notifications"
+            menuButton = {MenuButton} />
+          <NotificationModal ref='modal'/>
 
-        <ListView
-          dataSource = {this.state.dataSource}
-          renderRow = {this._renderNotif.bind(this)}
-          enableEmptySections={true}
-          style = {styles.listview} />
+          <ListView
+            dataSource = {this.state.dataSource}
+            renderRow = {this._renderNotif.bind(this)}
+            enableEmptySections={true}
+            style = {styles.listview} />
 
-        <ActionButton onPress = {this._clearNotifs.bind(this)} title="Clear All" />
+          <ActionButton onPress = {this._clearNotifs.bind(this)} title="Clear All" />
 
-      </View>
-        </SideMenu>
+        </View>
+      </SideMenu>
 
     )
   }
@@ -173,14 +140,14 @@ class NotificationList extends Component {
 
     const onPress = () => {
       // Pop open notification modal.
-      this._setModalVisible(true);
+      this.refs.modal._setModalVisible(true, notif);
       this.setState({
         selectedNotif: notif
       });
     }
 
     return (
-      <ListNotif notif={notif} onPress={onPress} />
+      <NotificationItem notif={notif} onPress={onPress} />
     );
   }
 

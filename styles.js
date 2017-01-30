@@ -1,5 +1,5 @@
-const React = require('react-native')
-const {StyleSheet} = React
+const React = require('react-native');
+const {StyleSheet} = React;
 const constants = {
   actionColor: '#24CE84'
 };
@@ -81,7 +81,27 @@ var styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
   },
-})
+  notifContainer: {
+    borderWidth: 1,
+    borderRadius: 3,
+    shadowColor: "#000",
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 1,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 10,
+  },
+  notifItem: {
+    padding: 5,
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    borderColor: '#ddd',
+    position: 'relative',
+  }
 
-module.exports = styles
+});
+
+module.exports = styles;
 module.exports.constants = constants;

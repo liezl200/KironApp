@@ -135,6 +135,7 @@ TODO:
 	- x fix modal style
 	- add blur component
 - x add logout functionality
+- ESLint setup
 - notification title + text
 	- change data schema and parts that interface with backend
 	- title + subtitle list view
