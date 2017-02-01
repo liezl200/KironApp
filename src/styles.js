@@ -163,7 +163,11 @@ var styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
   },
-
+  spinner: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 module.exports = styles;

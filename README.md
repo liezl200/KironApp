@@ -122,26 +122,32 @@ npm i react-native-vector-icons --save && react-native link react-native-vector-
 
 
 TODO:
-- x familiarize with react native elements, read code examples
-- x add navigation menu
-	- x add rough side menu with button
-	- x clean up side menu list: Campus, Settings, Support, Help, Logout
-	- x add side menu button to status bar
-	- change side menu button to touchable highlight icon
+x - familiarize with react native elements, read code examples
+x - add navigation menu
+	x - add rough side menu with button
+	x - clean up side menu list: Campus, Settings, Support, Help, Logout
+	x - add side menu button to status bar
 	- fix open / close behavior
-	- x hook up side menu button to trigger side menu
-- x add modal on notification press
-	- x add rough modals on notif press: to separate the components, probably have to use a navigator to display it
-	- x fix modal style
+	x - hook up side menu button to trigger side menu
+x - add modal on notification press
+	x - add rough modals on notif press: to separate the components, probably have to use a navigator to display it
+	x - fix modal style
 	- add blur component
-- x add logout functionality
+x - add logout functionality
 - ESLint setup
-- notification title + text
-	- change data schema and parts that interface with backend
-	- title + subtitle list view
-- consolidate styles
+x - notification title + text
+	x - change data schema and parts that interface with backend
+	x - title + subtitle list view
+x - consolidate styles
 - restrict user domain
 	- read how to restrict user domain google sign in
 	- read how to handle domain restriction errors
 	- implement domain restriction
 	- implement alert in case of wrong email domain
+- user notification Firebase schema
+- implement activity indicators
+
+NITS:
+- scrollable content margins w/ List
+- use TouchableHighlight + Kiron logo for side menu toggle
+- add blur / fade component at bottom of notification card
