@@ -144,7 +144,12 @@ x - consolidate styles
 	- read how to handle domain restriction errors
 	- implement domain restriction
 	- implement alert in case of wrong email domain
-- user notification Firebase schema
+- schemas
+	- user-notification Firebase schema
+	- user-topic Firebase schema
+		- auto-subscribe all users to "all" topic
+	- user-deviceId Firebase schema
+		- save "FCM token" as device id -- associate user with multiple devices
 - implement activity indicators
 
 NITS:

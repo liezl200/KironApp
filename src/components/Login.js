@@ -20,6 +20,7 @@ import {
 
 // Import components
 const NotificationList = require('./NotificationList');
+const Spinner = require('./Spinner');
 
 // Import modules
 const firebaseApp = require('../modules/Firebase').firebaseApp;
@@ -33,7 +34,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      loading: false,
     };
     //this.usersRef = firebaseApp.database().ref().child('users');
   }
@@ -42,16 +44,25 @@ class Login extends Component {
     this._setupGoogleSignin();
   }
 
+  _renderButton() {
+    if (this.state.loading) {
+      return (<Spinner size='large'/>);
+    }
+
+    return (
+      <GoogleSigninButton
+        style={{width: 212, height: 48}}
+        size={GoogleSigninButton.Size.Standard}
+        color={GoogleSigninButton.Color.Light}
+        onPress={this._signIn.bind(this)} />
+    );
+  }
   render() {
 
     if (!this.state.user) {
       return (
         <View style={styles.loginContainer}>
-          <GoogleSigninButton
-            style={{width: 212, height: 48}}
-            size={GoogleSigninButton.Size.Standard}
-            color={GoogleSigninButton.Color.Light}
-            onPress={this._signIn.bind(this)} />
+          {this._renderButton()}
         </View>
       );
     }
@@ -96,8 +107,10 @@ class Login extends Component {
 
 
   _signIn() {
+    this.setState({loading: true})
     GoogleSignin.signIn()
     .then((user) => {
+      this.setState({loading: false})
       console.log(user);
       var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
         console.log({'firebase: ': firebaseUser});
@@ -142,6 +155,7 @@ class Login extends Component {
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
+      this.setState({loading: false})
     })
     .done();
   }
