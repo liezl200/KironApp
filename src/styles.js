@@ -118,13 +118,13 @@ var styles = StyleSheet.create({
     marginBottom: 10,
   },
   notifItem: {
-    maxHeight: 78,
+    height: 78,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     position: 'relative',
   },
   notifItemChevron: {
-    width: 30,
+    width: 20,
     borderRadius: 5,
     borderBottomLeftRadius: 0,
     borderTopLeftRadius: 0,

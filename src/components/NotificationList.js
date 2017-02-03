@@ -2,26 +2,11 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  TouchableHighlight,
-  StyleSheet,
-  Text,
   ListView,
   View,
-  } from 'react-native';
+} from 'react-native';
 
-import {
-  Button,
-  List,
-  ListItem,
-  Icon,
-  SideMenu,
-  Card
-} from 'react-native-elements';
-
-// Import components
-const StatusBar = require('./StatusBar');
-const ActionButton = require('./ActionButton');
+// Import custom components
 const NotificationItem = require('./NotificationItem');
 const NotificationModal = require('./NotificationModal');
 
@@ -35,16 +20,7 @@ class NotificationList extends Component {
   constructor(props) {
     super(props);
 
-    this.menuList = [
-      {name: 'Campus', icon: 'school'},
-      {name: 'Settings', icon: 'settings'},
-      {name: 'Support', icon: 'supervisor-account'},
-      {name: 'Help', icon: 'help', onPress: null},
-      {name: 'Logout', icon: 'power-settings-new', onPress: this.props.signOut}
-    ];
-
     this.state = {
-      isOpen: false,
       selectedNotif: {},
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
@@ -62,11 +38,7 @@ class NotificationList extends Component {
     // firebaseApp.database().ref().update(updates);
   }
 
-  _toggleSideMenu () {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
+
 
   listenForNotifs(notifsRef) {
     notifsRef.on('value', (snap) => {
@@ -95,51 +67,19 @@ class NotificationList extends Component {
 
   render() {
     console.log(this.props.user);
-    const MenuComponent = (
-      <View style={{flex: 1, backgroundColor: '#ededed', paddingTop: 50}}>
-        <List containerStyle={{marginBottom: 20}}>
-        {
-          this.menuList.map((l, i) => (
-            <ListItem
-              onPress={l.onPress}
-              key={i}
-              title={l.name}
-              leftIcon={{name: l.icon}}
-              hideChevron />
-          ))
-        }
-        </List>
-      </View>
-    );
-
-    const MenuButton = (
-      <Icon
-        onPress={this._toggleSideMenu.bind(this)}
-        name= 'menu' />
-    );
 
     return (
-      <SideMenu
-        isOpen = {this.state.isOpen}
-        menu = {MenuComponent}>
+      <View style = {styles.container}>
 
-        <View style = {styles.container}>
+        <NotificationModal ref='modal'/>
 
-          <StatusBar
-            title="Notifications"
-            menuButton={MenuButton}
-            user={this.props.user}/>
-          <NotificationModal ref='modal'/>
+        <ListView
+          dataSource = {this.state.dataSource}
+          renderRow = {this._renderNotif.bind(this)}
+          enableEmptySections={true}
+          style = {styles.listview} />
 
-          <ListView
-            dataSource = {this.state.dataSource}
-            renderRow = {this._renderNotif.bind(this)}
-            enableEmptySections={true}
-            style = {styles.listview} />
-
-        </View>
-      </SideMenu>
-
+      </View>
     )
   }
 

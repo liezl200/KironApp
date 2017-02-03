@@ -1,6 +1,6 @@
-import App from './src/App';
+import Login from './src/Login';
 import {
   AppRegistry,
 } from 'react-native';
 
-AppRegistry.registerComponent('KironApp', () => App);
+AppRegistry.registerComponent('KironApp', () => Login);
