@@ -154,5 +154,5 @@ x - consolidate styles
 
 NITS:
 - scrollable content margins w/ List
-- use TouchableHighlight + Kiron logo for side menu toggle
+x - use TouchableHighlight + Kiron logo for side menu toggle
 - add blur / fade component at bottom of notification card

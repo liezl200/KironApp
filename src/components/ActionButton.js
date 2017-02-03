@@ -8,18 +8,18 @@ const {
 	StyleSheet,
 	Text,
 	View,
-	TouchableHighlight
+	TouchableOpacity,
 } = ReactNative;
 
 class ActionButton extends Component {
 	render() {
 		return (
 			<View style = {styles.action}>
-				<TouchableHighlight
+				<TouchableOpacity
 					underlayColor = {constants.actionColor}
 					onPress = {this.props.onPress}>
 					<Text style = {styles.actionText}> {this.props.title} </Text>
-				</TouchableHighlight>
+				</TouchableOpacity>
 			</View>
 		);
 	}

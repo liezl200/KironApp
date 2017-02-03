@@ -133,6 +133,8 @@ class Login extends Component {
 
         // Check if we are already signed into Firebase with the correct user.
         if (!isUserEqual(user, firebaseUser)) {
+          // TODO: prevent registering emails with domains other than kiron.ngo!
+
           // Build Firebase credential with the Google ID token.
           var credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
           // Sign in with the credential from the Google user.

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 
 import {
   List,
@@ -10,7 +10,7 @@ import {
 
 // Import custom components
 const StatusBar = require('./components/StatusBar');
-
+const ActionButton = require('./components/ActionButton');
 const NotificationList = require( './components/NotificationList');
 
 class App extends Component {
@@ -55,9 +55,13 @@ class App extends Component {
     );
 
     const MenuButton = (
-      <Icon
-        onPress={this._toggleSideMenu.bind(this)}
-        name= 'menu' />
+      <View>
+        <TouchableOpacity
+          onPress={this._toggleSideMenu.bind(this)}>
+          <Icon
+            name= 'menu' />
+        </TouchableOpacity>
+      </View>
     );
 
     return (
@@ -69,7 +73,6 @@ class App extends Component {
           title="Notifications"
           menuButton={MenuButton}
           user={this.props.user} />
-
         <NotificationList user={this.props.user}/>
 
       </SideMenu>
