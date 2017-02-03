@@ -144,7 +144,7 @@ x - restrict user domain
 	x - read how to handle domain restriction errors
 	x - implement domain restriction
 	x - implement alert in case of wrong email domain
-	x	- in firebase console Authentication rules (https://console.firebase.google.com/project/kirontestapp/database/rules):
+	x	- in firebase console Authentication rules (https://console.firebase.google.com/project/kirontestapp/database/rules). there is an OAuth request parameter (hd) that will do domain restriction but it is completely client side, enforcing this rule + having app logic will prevent unauthorized access:
 
 				{
 				  "rules": {
