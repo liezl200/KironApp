@@ -28,7 +28,7 @@ const firebaseApp = require('./modules/Firebase').firebaseApp;
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 // TODO(liezl): Add OAuth options that will allow a forgot your password thru kiron?
 
-const emailDomain = 'gmail.com';
+const emailDomain = 'kiron.ngo';
 
 // Import styles
 const styles = require('./styles.js');
@@ -150,7 +150,7 @@ class Login extends Component {
         // Check if we are already signed into Firebase with the correct user.
         if (!isUserEqual(user, firebaseUser)) {
           // Prevent registering emails with domains other than kiron.ngo!
-          if (firebaseUser.email.endsWith(emailDomain)) {
+          if (firebaseUser && firebaseUser.email && firebaseUser.email.endsWith(emailDomain)) {
             // Build Firebase credential with the Google ID token.
             var credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
             // Sign in with the credential from the Google user.
@@ -171,7 +171,7 @@ class Login extends Component {
           console.log('User already signed-in Firebase.');
         }
       });
-      if (user.email.endsWith(emailDomain)) {
+      if (user && user.email && user.email.endsWith(emailDomain)) {
         this.setState({user: user});
       } else {
         this.setState({wrongDomainError:true});
