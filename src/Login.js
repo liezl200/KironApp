@@ -28,6 +28,8 @@ const firebaseApp = require('./modules/Firebase').firebaseApp;
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 // TODO(liezl): Add OAuth options that will allow a forgot your password thru kiron?
 
+const emailDomain = 'gmail.com';
+
 // Import styles
 const styles = require('./styles.js');
 
@@ -37,6 +39,7 @@ class Login extends Component {
     this.state = {
       user: null,
       loading: false,
+      wrongDomainError: false,
     };
     //this.usersRef = firebaseApp.database().ref().child('users');
   }
@@ -58,12 +61,24 @@ class Login extends Component {
         onPress={this._signIn.bind(this)} />
     );
   }
+
+  _renderSignInError() {
+    if (!this.state.loading && (this.state.user
+      && this.state.user.email
+      && !this.state.user.email.endsWith(emailDomain)
+      || this.state.wrongDomainError)) {
+      return (
+        <Text>Please login with your {emailDomain} account</Text>
+      )
+    }
+  }
   render() {
 
     if (!this.state.user) {
       return (
         <View style={styles.loginContainer}>
           {this._renderButton()}
+          {this._renderSignInError()}
         </View>
       );
     }
@@ -109,11 +124,12 @@ class Login extends Component {
 
 
   _signIn() {
-    this.setState({loading: true})
+    this.setState({loading: true, wrongDomainError: false})
     GoogleSignin.signIn()
     .then((user) => {
       this.setState({loading: false})
       console.log(user);
+
       var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
         console.log({'firebase: ': firebaseUser});
         unsubscribe();
@@ -122,7 +138,7 @@ class Login extends Component {
             var providerData = firebaseUser.providerData;
             for (var i = 0; i < providerData.length; i++) {
               if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-                  providerData[i].uid === googleUser.id) {
+                providerData[i].uid === googleUser.id) {
                 // We don't need to reauth the Firebase connection.
                 return true;
               }
@@ -133,29 +149,36 @@ class Login extends Component {
 
         // Check if we are already signed into Firebase with the correct user.
         if (!isUserEqual(user, firebaseUser)) {
-          // TODO: prevent registering emails with domains other than kiron.ngo!
+          // Prevent registering emails with domains other than kiron.ngo!
+          if (firebaseUser.email.endsWith(emailDomain)) {
+            // Build Firebase credential with the Google ID token.
+            var credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
+            // Sign in with the credential from the Google user.
+            console.log(credential);
+            firebase.auth().signInWithCredential(credential).catch(function(error) {
+              console.log(error);
 
-          // Build Firebase credential with the Google ID token.
-          var credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
-          // Sign in with the credential from the Google user.
-          console.log(credential);
-          firebase.auth().signInWithCredential(credential).catch(function(error) {
-            console.log(error);
-
-            // TODO: Fancier error handling here / implement domain restriction
-            // var errorCode = error.code;
-            // var errorMessage = error.message;
-            // // The email of the user's account used.
-            // var email = error.email;
-            // // The firebase.auth.AuthCredential type that was used.
-            // var credential = error.credential;
-          });
+              // TODO: Fancier error handling here / implement domain restriction
+              // var errorCode = error.code;
+              // var errorMessage = error.message;
+              // // The email of the user's account used.
+              // var email = error.email;
+              // // The firebase.auth.AuthCredential type that was used.
+              // var credential = error.credential;
+            });
+          }
         } else {
           console.log('User already signed-in Firebase.');
         }
       });
+      if (user.email.endsWith(emailDomain)) {
+        this.setState({user: user});
+      } else {
+        this.setState({wrongDomainError:true});
+        this._signOut();
+      }
 
-      this.setState({user: user});
+
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);

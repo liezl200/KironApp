@@ -139,11 +139,11 @@ x - notification title + text
 	x - change data schema and parts that interface with backend
 	x - title + subtitle list view
 x - consolidate styles
-- restrict user domain
-	- read how to restrict user domain google sign in
-	- read how to handle domain restriction errors
-	- implement domain restriction
-	- implement alert in case of wrong email domain
+x - restrict user domain
+	x - read how to restrict user domain google sign in
+	x - read how to handle domain restriction errors
+	x - implement domain restriction
+	x - implement alert in case of wrong email domain
 - schemas
 	- user-notification Firebase schema
 	- user-topic Firebase schema
