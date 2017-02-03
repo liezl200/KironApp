@@ -144,6 +144,15 @@ x - restrict user domain
 	x - read how to handle domain restriction errors
 	x - implement domain restriction
 	x - implement alert in case of wrong email domain
+	x	- in firebase console Authentication rules (https://console.firebase.google.com/project/kirontestapp/database/rules):
+
+				{
+				  "rules": {
+				    ".read": "auth.token.email.endsWith('gmail.com')",
+				    ".write": "auth.token.email.endsWith('gmail.com')"
+				  }
+				}
+
 - schemas
 	- user-notification Firebase schema
 	- user-topic Firebase schema
