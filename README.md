@@ -148,8 +148,8 @@ x - restrict user domain
 
 				{
 				  "rules": {
-				    ".read": "auth.token.email.endsWith('gmail.com')",
-				    ".write": "auth.token.email.endsWith('gmail.com')"
+				    ".read": "auth.token.email.endsWith('kiron.ngo')",
+				    ".write": "auth.token.email.endsWith('kiron.ngo')"
 				  }
 				}
 
