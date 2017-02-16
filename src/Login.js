@@ -28,7 +28,7 @@ const firebaseApp = require('./modules/Firebase').firebaseApp;
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 // TODO(liezl): Add OAuth options that will allow a forgot your password thru kiron?
 
-const emailDomain = 'kiron.ngo';
+const emailDomain = 'gmail.com';
 
 // Import styles
 const styles = require('./styles.js');

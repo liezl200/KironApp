@@ -28,6 +28,8 @@ class NotificationList extends Component {
     };
 
     this.notifsRef = firebaseApp.database().ref().child('notifs');
+    // this.notifsRef.keepSynced(true); // TODO(liezl): actually enable persistence natively
+    // TODO(liezl): might have to find out how to explicitly force a sync when user requests reload
 
     // TESTING ONLY add some test data
     // var updates = {};

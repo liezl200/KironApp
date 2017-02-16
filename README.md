@@ -120,6 +120,10 @@ GoogleService-Info.plist
 REACT NATIVE ELEMENTS
 npm i react-native-vector-icons --save && react-native link react-native-vector-icons
 
+NODE SERVER SETUP
+- simpleNotificationServer
+- http://stackoverflow.com/questions/41874398/what-is-serviceaccountkey-json-referring-to-in-the-firebase-device-to-device-n to create a service account and download serviceAccountKey.json
+- get Cloud Messagin API key (screenshot)
 
 TODO:
 x - familiarize with react native elements, read code examples
@@ -155,13 +159,42 @@ x - restrict user domain
 
 - schemas
 	- user-notification Firebase schema
+		x - store FCM token in user
 	- user-topic Firebase schema
-		- auto-subscribe all users to "all" topic
-	- user-deviceId Firebase schema
-		- save "FCM token" as device id -- associate user with multiple devices
-- implement activity indicators
+		x - auto-subscribe all users to "all" topic
+	x - user-deviceId Firebase schema
+		x - save "FCM token" as device id -- associate user with multiple devices
+	- allow a dynamically created set of users to receive and see specific notifications (don't rely on topic subscriptions)
+x - add persistence + offline (offline might be default) capability to the notifs ref
+- implement more activity indicators
+
 
 NITS:
 - scrollable content margins w/ List
 x - use TouchableHighlight + Kiron logo for side menu toggle
 - add blur / fade component at bottom of notification card
+
+
+------------
+DATABASE DESIGN
+Users
+	email
+	roles
+	starred
+	read
+	groups -- by default all users are in group 0 but we won't actually explicitly encode this
+	ungroupedNotifs -- any notifications sent to this user that isn't part of a pre-set topic (group dynamically created with admin dashboard)
+	fcmTokens
+Notifs
+	title
+	text
+	topics
+	groups -- group 0 means all
+Roles
+	role
+	no_of_users
+Groups (key)
+	name -- plain text name for this group
+	members -- keys of users in this group
+	topicId -- firebase topic (unique string identifier for topic that this group is subscribed to)
+---------
