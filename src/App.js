@@ -98,13 +98,15 @@ class App extends Component {
 
             if (fbUser != null) { // user already exists in our firebase db
               // if the current FCM token is not in this user's list, this is the first time we're seeing this device
-              snapshot.forEach((foundUser) => {
+              snapshot.forEach((foundUser) => { // note there is only one foundUser
                 var fcmTokens = foundUser.child("fcmTokens").val();
                 console.log(fcmTokens);
                 if (!fcmTokens.includes(token)) {
                   // associate this new FCM token with this user
                   fcmTokens.push(token);
-                  foundUser.ref().update({'fcmTokens' : fcmTokens});
+                  updates = {}
+                  updates['/users/' + foundUser.key + '/fcmTokens'] = fcmTokens;
+                  firebaseApp.database().ref().update(updates);
                 }
               });
             }
