@@ -198,3 +198,5 @@ Groups (key)
 	members -- keys of users in this group
 	topicId -- firebase topic (unique string identifier for topic that this group is subscribed to)
 ---------
+
+By default, every notif in all-notifs will be unread, unstarred, and unarchived. When the user interacts with the notification, then we can add the appropriate user interaction record into notifsInfo. So if we have a notif in all-notifs whose key we can't find in notifsInfo, we know the user hasn't interacted with it.

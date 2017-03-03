@@ -33,50 +33,38 @@ class NotificationList extends Component {
     this.userNotifsRef = firebaseApp.database().ref()
       .child('users')
       .child(this.props.firebaseUserKey)
-      .child('notifsInfo'); // TODO: does user.key exist?
+      .child('notifsInfo');
     // this.notifsRef.keepSynced(true); // TODO(liezl): actually enable persistence natively
     // TODO(liezl): might have to find out how to explicitly force a sync when user requests reload
-
-    // TESTING ONLY add some test data
-    // var updates = {};
-    // for (var i = 0; i < 15; i++) {
-    //   var newNotifKey = firebaseApp.database().ref().child('notifs').push().key;
-    //   updates['/notifs/' + newNotifKey] = {title: 'Test Notification Header ' + i, text: 'This is test text for notif '+ i};
-    // }
-    // firebaseApp.database().ref().update(updates);
   }
-
-
 
   listenForUserNotifs(userNotifsRef, notifsRef) { // TODO: fix allNotifs case?
     var appContext = this;
+    // TODO verify on vs once flows
     userNotifsRef.on('value', (snap) => {
       var notifs = [];
-      // STEP 1: get all this user's notifs from allNotifs and ungroupedNotifs {notifKey: {title: , text: , read: , starred: , archived: , _key: }}
-      snap.child('ungroupedNotifs').forEach((ungroupedNotifKey) => { // ungroupedNotifKey.val() is each key in the user's ungroupedNotifs list
-        notifsRef.child(ungroupedNotifKey.val())
-          .on("value", function(ungroupedNotifsSnap) { // TODO: is this good for persistence?
+      // STEP 1: get all this user's notifs from allNotifs and notifsInfo {notifKey: {title: , text: , read: , starred: , archived: , _key: }}
+      snap.forEach((notifInfo) => { // notifInfo.val().key is each key of the notification in the user's notifInfo list
+        console.log(notifInfo.val())
+        var notifKey = notifInfo.val().notifKey;
+        notifsRef.child(notifKey)
+          .once("value", function(ungroupedNotifsSnap) { // use 'once' because notifications never get deleted from db (TODO: allow edit capabilities for the notification content)
             notifs.push({
               title: ungroupedNotifsSnap.val().title,
               text: ungroupedNotifsSnap.val().text,
-              read: false,
-              _key: ungroupedNotifsSnap.key
+              read: notifInfo.val().read,
+              archived: notifInfo.val().archived,
+              starred: notifInfo.val().starred,
+              notifKey: notifKey,
+              _key: notifInfo.key // so we can easily modify the notifInfo in the db from the client
             })
-            // STEP 2: set read, archived, and starred flags to all the notifs in the user's notifs
-            // var flags = ['read', 'archived', 'starred']
-            // flags.forEach(()
-            // )
+
             console.log(notifs)
             appContext.setState({
               dataSource: appContext.state.dataSource.cloneWithRows(notifs)
             });
           })
-
       })
-
-
-
-
     });
   }
 
@@ -104,6 +92,7 @@ class NotificationList extends Component {
 
     const onPress = () => {
       // Pop open notification modal.
+      this.userNotifsRef.child(notif._key).child('read').set(true);
       this.refs.modal._setModalVisible(true, notif);
       this.setState({
         selectedNotif: notif

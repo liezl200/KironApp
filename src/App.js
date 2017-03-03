@@ -100,7 +100,7 @@ class App extends Component {
       console.log(token);
       usersRef.orderByChild('email') // try to look up this user in our firebase db users table
         .equalTo(appUser.email)
-        .on('value', function(snapshot) {
+        .once('value', function(snapshot) {
             var fbUser = snapshot.val();
             if (fbUser != null) { // user already exists in our firebase db
               // if the current FCM token is not in this user's list, this is the first time we're seeing this device
@@ -122,12 +122,14 @@ class App extends Component {
               // TODO: refactor into ._addNewUser() function
               var updates = {}
               var newUserKey = usersRef.push().key; // this.usersRef.push().key;
-              var userNotifsSchema = {
-                starred: ['t1'],
-                read: ['t1'],
-                groups: [],
-                ungroupedNotifs: ['t1']
-              };
+              var userNotifsSchema = [
+              {
+                notifKey: 't1',
+                starred: false,
+                read: false,
+                ungroupedNotifs: false
+              }
+              ];
               updates['/users/' + newUserKey] = {
                 email: appUser.email,
                 roles: ['t1'],
