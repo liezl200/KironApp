@@ -28,6 +28,12 @@ class NotificationList extends Component {
     };
 
     this.notifsRef = firebaseApp.database().ref().child('notifs');
+    this.allNotifsRef = firebaseApp.database().ref().child('allNotifs');
+    console.log(this.props.firebaseUserKey);
+    this.userNotifsRef = firebaseApp.database().ref()
+      .child('users')
+      .child(this.props.firebaseUserKey)
+      .child('notifsInfo'); // TODO: does user.key exist?
     // this.notifsRef.keepSynced(true); // TODO(liezl): actually enable persistence natively
     // TODO(liezl): might have to find out how to explicitly force a sync when user requests reload
 
@@ -42,29 +48,40 @@ class NotificationList extends Component {
 
 
 
-  listenForNotifs(notifsRef) {
-    notifsRef.on('value', (snap) => {
-
-      // get children as an array
+  listenForUserNotifs(userNotifsRef, notifsRef) { // TODO: fix allNotifs case?
+    var appContext = this;
+    userNotifsRef.on('value', (snap) => {
       var notifs = [];
-      snap.forEach((child) => {
-        notifs.push({
-          title: child.val().title,
-          text: child.val().text,
-          read: child.val().read,
-          _key: child.key
-        });
-      });
+      // STEP 1: get all this user's notifs from allNotifs and ungroupedNotifs {notifKey: {title: , text: , read: , starred: , archived: , _key: }}
+      snap.child('ungroupedNotifs').forEach((ungroupedNotifKey) => { // ungroupedNotifKey.val() is each key in the user's ungroupedNotifs list
+        notifsRef.child(ungroupedNotifKey.val())
+          .on("value", function(ungroupedNotifsSnap) { // TODO: is this good for persistence?
+            notifs.push({
+              title: ungroupedNotifsSnap.val().title,
+              text: ungroupedNotifsSnap.val().text,
+              read: false,
+              _key: ungroupedNotifsSnap.key
+            })
+            // STEP 2: set read, archived, and starred flags to all the notifs in the user's notifs
+            // var flags = ['read', 'archived', 'starred']
+            // flags.forEach(()
+            // )
+            console.log(notifs)
+            appContext.setState({
+              dataSource: appContext.state.dataSource.cloneWithRows(notifs)
+            });
+          })
 
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(notifs)
-      });
+      })
+
+
+
 
     });
   }
 
   componentDidMount() {
-    this.listenForNotifs(this.notifsRef);
+    this.listenForUserNotifs(this.userNotifsRef, this.notifsRef);
   }
 
   render() {

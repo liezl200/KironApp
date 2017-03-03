@@ -15,6 +15,7 @@ import FCM from 'react-native-fcm';
 const StatusBar = require('./components/StatusBar');
 const ActionButton = require('./components/ActionButton');
 const NotificationList = require( './components/NotificationList');
+const Spinner = require('./components/Spinner');
 
 // Import modules
 const firebaseApp = require('./modules/Firebase').firebaseApp;
@@ -34,6 +35,7 @@ class App extends Component {
 
     this.state = {
       isOpen: false,
+      firebaseUserKey: ''
     };
 
   }
@@ -71,34 +73,40 @@ class App extends Component {
         </TouchableOpacity>
       </View>
     );
+    console.log(this.state);
+    if (this.state.firebaseUserKey && this.state.firebaseUserKey !== '') {
+      return (
+        <SideMenu
+            isOpen = {this.state.isOpen}
+            menu = {MenuComponent}>
 
-    return (
-      <SideMenu
-          isOpen = {this.state.isOpen}
-          menu = {MenuComponent}>
+          <StatusBar
+            title="Notifications"
+            menuButton={MenuButton}
+            user={this.props.user} />
+          <NotificationList user={this.props.user} firebaseUserKey={this.state.firebaseUserKey}/>
 
-        <StatusBar
-          title="Notifications"
-          menuButton={MenuButton}
-          user={this.props.user} />
-        <NotificationList user={this.props.user}/>
+        </SideMenu>
+      );
+    }
+    return (<Spinner size='large'/>);
 
-      </SideMenu>
-    );
   }
 
   componentDidMount() {
     var appUser = this.props.user;
+    var appContext = this;
     FCM.getFCMToken().then(token => {
       console.log(token);
       usersRef.orderByChild('email') // try to look up this user in our firebase db users table
         .equalTo(appUser.email)
         .on('value', function(snapshot) {
             var fbUser = snapshot.val();
-
             if (fbUser != null) { // user already exists in our firebase db
               // if the current FCM token is not in this user's list, this is the first time we're seeing this device
               snapshot.forEach((foundUser) => { // note there is only one foundUser
+
+                appContext.setState({firebaseUserKey: foundUser.key})
                 var fcmTokens = foundUser.child("fcmTokens").val();
                 console.log(fcmTokens);
                 if (!fcmTokens.includes(token)) {
@@ -114,13 +122,16 @@ class App extends Component {
               // TODO: refactor into ._addNewUser() function
               var updates = {}
               var newUserKey = usersRef.push().key; // this.usersRef.push().key;
+              var userNotifsSchema = {
+                starred: ['t1'],
+                read: ['t1'],
+                groups: [],
+                ungroupedNotifs: ['t1']
+              };
               updates['/users/' + newUserKey] = {
                 email: appUser.email,
-                roles: [],
-                starred: [],
-                read: [],
-                groups: [],
-                ungroupedNotifs: [],
+                roles: ['t1'],
+                notifsInfo: userNotifsSchema,
                 fcmTokens: [token] // store fcm token in our server and associate with the logged-in user
               };
               firebaseApp.database().ref().update(updates);
