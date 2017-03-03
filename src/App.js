@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 
 import {
   List,
@@ -16,6 +16,8 @@ const StatusBar = require('./components/StatusBar');
 const ActionButton = require('./components/ActionButton');
 const NotificationList = require( './components/NotificationList');
 const Spinner = require('./components/Spinner');
+
+const styles = require('./styles');
 
 // Import modules
 const firebaseApp = require('./modules/Firebase').firebaseApp;
@@ -85,7 +87,11 @@ class App extends Component {
             menuButton={MenuButton}
             user={this.props.user} />
           <NotificationList user={this.props.user} firebaseUserKey={this.state.firebaseUserKey}/>
-
+          <View style={styles.bottombar}>
+            <TouchableOpacity>
+              <Text>Archive</Text>
+            </TouchableOpacity>
+          </View>
         </SideMenu>
       );
     }

@@ -44,6 +44,16 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+  bottombar: {
+    backgroundColor: '#fff',
+    borderBottomColor: '#eee',
+    borderColor: 'transparent',
+    borderWidth: 1,
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 10
+  },
   navbarIcon: {
     position: 'absolute',
     marginTop: 24,

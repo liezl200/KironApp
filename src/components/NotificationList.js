@@ -43,13 +43,19 @@ class NotificationList extends Component {
     // TODO verify on vs once flows
     userNotifsRef.on('value', (snap) => {
       var notifs = [];
+      var archivedNotifs = [];
       // STEP 1: get all this user's notifs from allNotifs and notifsInfo {notifKey: {title: , text: , read: , starred: , archived: , _key: }}
       snap.forEach((notifInfo) => { // notifInfo.val().key is each key of the notification in the user's notifInfo list
         console.log(notifInfo.val())
         var notifKey = notifInfo.val().notifKey;
         notifsRef.child(notifKey)
           .once("value", function(ungroupedNotifsSnap) { // use 'once' because notifications never get deleted from db (TODO: allow edit capabilities for the notification content)
-            notifs.push({
+            var listToPush = notifs;
+            if(notifInfo.val().archived) {
+              listToPush = archivedNotifs;
+            }
+
+            listToPush.push({
               title: ungroupedNotifsSnap.val().title,
               text: ungroupedNotifsSnap.val().text,
               read: notifInfo.val().read,
@@ -57,7 +63,7 @@ class NotificationList extends Component {
               starred: notifInfo.val().starred,
               notifKey: notifKey,
               _key: notifInfo.key // so we can easily modify the notifInfo in the db from the client
-            })
+            });
 
             console.log(notifs)
             appContext.setState({
@@ -99,8 +105,13 @@ class NotificationList extends Component {
       });
     }
 
+    const onArchivePress = () => {
+      // Archives this notification.
+      this.userNotifsRef.child(notif._key).child('archived').set(true);
+    }
+
     return (
-      <NotificationItem notif={notif} onPress={onPress} />
+      <NotificationItem notif={notif} onPress={onPress} onArchivePress={onArchivePress}/>
     );
   }
 
