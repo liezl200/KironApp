@@ -104,7 +104,7 @@ class App extends Component {
                 if (!fcmTokens.includes(token)) {
                   // associate this new FCM token with this user
                   fcmTokens.push(token);
-                  updates = {}
+                  var updates = {}
                   updates['/users/' + foundUser.key + '/fcmTokens'] = fcmTokens;
                   firebaseApp.database().ref().update(updates);
                 }
@@ -112,7 +112,7 @@ class App extends Component {
             }
             else { // user does not exist in our firebase db
               // TODO: refactor into ._addNewUser() function
-              updates = {}
+              var updates = {}
               var newUserKey = usersRef.push().key; // this.usersRef.push().key;
               updates['/users/' + newUserKey] = {
                 email: appUser.email,

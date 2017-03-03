@@ -188,8 +188,8 @@ Users
 Notifs
 	title
 	text
-	topics
 	groups -- group 0 means all
+	timestamp
 Roles
 	role
 	no_of_users
