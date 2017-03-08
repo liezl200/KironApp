@@ -102,6 +102,7 @@ class App extends Component {
   componentDidMount() {
     var appUser = this.props.user;
     var appContext = this;
+    FCM.requestPermissions();
     FCM.getFCMToken().then(token => {
       console.log(token);
       usersRef.orderByChild('email') // try to look up this user in our firebase db users table

@@ -22,22 +22,22 @@ MUST ENABLE https://console.firebase.google.com/project/kirontestapp/authenticat
 
 DATABASE RULES public w/o firebase auth yet
 
-BEFORE PUSHING
+### BEFORE PUSHING
 1. change database rules
 2. add API keys to .gitignore
 3. android/local.properties in .gitignore?
 
-QUESTIONS/ notes
+### QUESTIONS/ notes
 1. need paid apple developer account to enable push notifications in your app
 2. Note: In order to use FCM you will need to set up a server (I used Django for my routes and PyFCM to make interacting with firebase easier)
 
 
-GOOGLE SIGN IN PROJECTE ACTUAL SETUP
+### GOOGLE SIGN IN PROJECTE ACTUAL SETUP
 MUST ENABLE https://console.firebase.google.com/project/kirontestapp/authentication/providers Google authentication
 
 
-GOOGLE SIGN IN TEST SETUP
-	* Google Account: kironappdev@gmail.com
+### GOOGLE SIGN IN TEST SETUP
+	#### Google Account: kironappdev@gmail.com
 		p: kirngo555
 		bday: Dec 25, 1998
 		name: Kiron Appdev
@@ -48,34 +48,34 @@ GOOGLE SIGN IN TEST SETUP
 	iOS bundle ID: ngo.kiron.testapp
 
 
-	IOS https://developers.google.com/mobile/add?platform=ios
+	#### IOS https://developers.google.com/mobile/add?platform=ios
 		* Google Project name: KironTestApp
 		* iOS bundle ID: ngo.kiron.testapp [screenshot of dev console]
 		> Add Google Sign-In service
 		> Download GoogleService-Info.plist and add to XCode project as part of RN Google Sign-In setup
 
-ANDROID
-	1) Open Android SDK Manager. I use Android Studio so to access the SDK manager, I launch Android Studio, select a project (doesn't matter which one), then Tools > Android > SDK Manager[sdk_manager SCREENSHOT]
-	2) Click Launch Standalone SDK Manager link at the bottom of the window that pops up [sdk_manager_popup SCREENSHOT] -- the extras don't appear directly in the basic Android Studio SDK Manager which is why you have to launch the standalone one
-	3) https://github.com/devfd/react-native-google-signin/blob/master/android-guide.md#config
-	4) install emulator and create virtual device. I installed Genymotion and used API 23 (Android 6.0.0)
-	5) install Google Play onto virtual device https://github.com/codepath/android_guides/wiki/Genymotion-2.0-Emulators-with-Google-Play-support
-		https://z3ntu.github.io/2015/12/10/play-services-with-genymotion.html has good instructions too
-	6) http://stackoverflow.com/questions/37389905/change-package-name-for-android-in-react-native MAKE SURE TO EDIT BUCK FILE ALSO AS COMMENT SAYS
-		FAILURE: Build failed with an exception.
+	#### ANDROID
+		1) Open Android SDK Manager. I use Android Studio so to access the SDK manager, I launch Android Studio, select a project (doesn't matter which one), then Tools > Android > SDK Manager[sdk_manager SCREENSHOT]
+		2) Click Launch Standalone SDK Manager link at the bottom of the window that pops up [sdk_manager_popup SCREENSHOT] -- the extras don't appear directly in the basic Android Studio SDK Manager which is why you have to launch the standalone one
+		3) https://github.com/devfd/react-native-google-signin/blob/master/android-guide.md#config
+		4) install emulator and create virtual device. I installed Genymotion and used API 23 (Android 6.0.0)
+		5) install Google Play onto virtual device https://github.com/codepath/android_guides/wiki/Genymotion-2.0-Emulators-with-Google-Play-support
+			https://z3ntu.github.io/2015/12/10/play-services-with-genymotion.html has good instructions too
+		6) http://stackoverflow.com/questions/37389905/change-package-name-for-android-in-react-native MAKE SURE TO EDIT BUCK FILE ALSO AS COMMENT SAYS
+			FAILURE: Build failed with an exception.
 
-		* What went wrong:
-		Execution failed for task ':app:processDebugGoogleServices'.
-		> No matching client found for package name 'com.kironapp'
-	7) https://github.com/airbnb/react-native-maps/issues/249
-	ISSUES:
-		run-android Build failed http://stackoverflow.com/questions/38191170/multiple-dex-files-define-lcom-google-firebase-firebaseexception
-		App Crash https://github.com/airbnb/react-native-maps/issues/249
-			>> https://github.com/airbnb/react-native-maps/pull/731/commits/dd107530a95dc1db35d1f505fab379404386e304
-		add web client ID: https://github.com/devfd/react-native-google-signin/issues/98
-			find it here https://console.developers.google.com/apis/credentials?project=kirontestapp
-			https://developer.android.com/studio/publish/app-signing.html#sign-auto
-		when generating google-services.json using https://developers.google.com/identity/sign-in/android/start-integrating make sure you add the SHA-1 fingerprint on the site BEFORE downloading google-services.json from the website
+			* What went wrong:
+			Execution failed for task ':app:processDebugGoogleServices'.
+			> No matching client found for package name 'com.kironapp'
+		7) https://github.com/airbnb/react-native-maps/issues/249
+		ISSUES:
+			run-android Build failed http://stackoverflow.com/questions/38191170/multiple-dex-files-define-lcom-google-firebase-firebaseexception
+			App Crash https://github.com/airbnb/react-native-maps/issues/249
+				>> https://github.com/airbnb/react-native-maps/pull/731/commits/dd107530a95dc1db35d1f505fab379404386e304
+			add web client ID: https://github.com/devfd/react-native-google-signin/issues/98
+				find it here https://console.developers.google.com/apis/credentials?project=kirontestapp
+				https://developer.android.com/studio/publish/app-signing.html#sign-auto
+			when generating google-services.json using https://developers.google.com/identity/sign-in/android/start-integrating make sure you add the SHA-1 fingerprint on the site BEFORE downloading google-services.json from the website
 
 
 FIREBASE STUFF
@@ -105,9 +105,12 @@ ANDROID REMOTE DEBUGGING
 /Users/liezl/Library/Android/sdk/platform-tools/adb reverse tcp:8081 tcp:8081
 http://localhost:8081/debugger-ui
 
-IOS FCM CLIENT SETUP
-
-restrict login by kiron
+### IOS FCM CLIENT SETUP
+* Install Cocoapods (at least version 1.0.0)
+* `cd ios && pod install`
+* If you run into a problem with Xcode not being able to build for your iOS version, you probably have to update Xcode
+* If you run into a problem with React/RCTBridgeModule.h, update Xcode and try http://stackoverflow.com/questions/41477241/react-native-xcode-upgrade-and-now-rctconvert-h-not-found if it still doesn't work
+restrict login by kiron [insert incompatible_ios_xcode.png]
 
 DESIGN QUESTIONS:
 should I initialize firebase only once and pass the reference around?? YES
@@ -167,10 +170,12 @@ x - restrict user domain
 	- allow a dynamically created set of users to receive and see specific notifications (don't rely on topic subscriptions)
 x - add persistence + offline (offline might be default) capability to the notifs ref
 - implement more activity indicators
+- FCM Setup on iOS
+	- https://firebase.google.com/docs/cloud-messaging/ios/certs
 
 
 NITS:
-- scrollable content margins w/ List
+x - scrollable content margins w/ List
 x - use TouchableHighlight + Kiron logo for side menu toggle
 - add blur / fade component at bottom of notification card
 
