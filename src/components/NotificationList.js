@@ -60,6 +60,7 @@ class NotificationList extends Component {
             listToPush.push({
               title: ungroupedNotifsSnap.val().title,
               text: ungroupedNotifsSnap.val().text,
+              groups: ungroupedNotifsSnap.val().groups,
               read: notifInfo.val().read,
               archived: notifInfo.val().archived,
               starred: notifInfo.val().starred,

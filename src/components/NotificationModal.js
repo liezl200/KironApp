@@ -16,12 +16,12 @@ class NotificationModal extends Component {
 
     this.state = {
       modalVisible: false,
-      notif: null,
+      selectedNotif: null,
     };
   }
 
   _setModalVisible(visible, notif) {
-    this.setState({modalVisible: visible, notif: notif});
+    this.setState({modalVisible: visible, selectedNotif: notif});
   }
 
   render() {
@@ -35,17 +35,15 @@ class NotificationModal extends Component {
           <View style={styles.modalBackground}>
             <View style={styles.modalContainer}>
               <Card
-                title={this.state.selectedNotif == null? 'Title' : this.state.selectedNotif.title}
-                image={{uri:'http://thedomeproject.net/assets/img/editorials/kiron%20student.jpg'}}>
+                title={this.state.selectedNotif == null? 'Title' : this.state.selectedNotif.title}>
 
                 <Text style={{marginBottom: 10}}>
-                  The idea with React Native Elements is more about component structure than actual design.
+                  {this.state.selectedNotif == null? '' : this.state.selectedNotif.text}
                 </Text>
 
                 <Button
                   icon={{name: 'code'}}
                   backgroundColor='#03A9F4'
-                  fontFamily='Lato'
                   buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                   title='VIEW NOW' />
 
