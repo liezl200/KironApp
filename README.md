@@ -103,6 +103,7 @@ ANDROID REMOTE DEBUGGING
 - just connect, enable USB debugging, and run react-native run-android
 /Users/liezl/Library/Android/sdk/platform-tools/adb devices to check if connected
 /Users/liezl/Library/Android/sdk/platform-tools/adb reverse tcp:8081 tcp:8081
+	solves BatchedBridge issue
 http://localhost:8081/debugger-ui
 
 ### IOS FCM CLIENT SETUP

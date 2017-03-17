@@ -40,7 +40,7 @@ var styles = StyleSheet.create({
     borderBottomColor: '#eee',
     borderColor: 'transparent',
     borderWidth: 1,
-    height: 34,
+    height: 44,
     flexDirection: 'row',
     justifyContent: 'center',
   },
@@ -56,7 +56,7 @@ var styles = StyleSheet.create({
   },
   navbarIcon: {
     position: 'absolute',
-    marginTop: 24,
+    marginTop: 34,
     marginLeft: 25,
   },
   userAvatar: {
@@ -66,7 +66,7 @@ var styles = StyleSheet.create({
   },
   userAvatarContainer: {
     position: 'absolute',
-    marginTop: 5,
+    marginTop: 15,
     right: 20,
     top: 2,
   },
@@ -77,11 +77,11 @@ var styles = StyleSheet.create({
   },
   statusbar: {
     backgroundColor: '#fff',
-    height: 25,
+    height: 35,
     justifyContent: 'flex-end',
     flexDirection: 'row',
     paddingRight: 70,
-    paddingTop: 5,
+    paddingTop: 15,
   },
   statusText: {
     fontSize: 14,
@@ -142,10 +142,10 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
+    // shadowColor: '#000',
+    // shadowOffset: {width: 0, height: 2},
+    // shadowOpacity: 0.1,
+    // shadowRadius: 2,
   },
   notifItemIndicatorContainer: {
     width: 20,

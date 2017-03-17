@@ -39,6 +39,7 @@ class App extends Component {
       isOpen: false,
       firebaseUserKey: ''
     };
+    this.notifsRef = firebaseApp.database().ref().child('notifs');
 
   }
 
@@ -98,6 +99,22 @@ class App extends Component {
     return (<Spinner size='large'/>);
 
   }
+  listenForNotifs(notifsRef) {
+     notifsRef.on('value', (snap) => {
+
+       // get children as an array
+       var notifs = [];
+       snap.forEach((child) => {
+         notifs.push({
+           title: child.val().title,
+           _key: child.key
+         });
+       });
+
+       console.log(notifs)
+
+     });
+   }
 
   componentDidMount() {
     var appUser = this.props.user;
@@ -105,10 +122,16 @@ class App extends Component {
     FCM.requestPermissions();
     FCM.getFCMToken().then(token => {
       console.log(token);
+      console.log(appUser);
+      console.log(usersRef);
+      this.listenForNotifs(this.notifsRef);
+
       usersRef.orderByChild('email') // try to look up this user in our firebase db users table
-        .equalTo(appUser.email)
+        //.equalTo(appUser.email)
         .once('value', function(snapshot) {
+          console.log('hi');
             var fbUser = snapshot.val();
+            console.log(fbUser);
             if (fbUser != null) { // user already exists in our firebase db
               // if the current FCM token is not in this user's list, this is the first time we're seeing this device
               snapshot.forEach((foundUser) => { // note there is only one foundUser
@@ -116,7 +139,7 @@ class App extends Component {
                 appContext.setState({firebaseUserKey: foundUser.key})
                 var fcmTokens = foundUser.child("fcmTokens").val();
                 console.log(fcmTokens);
-                if (!fcmTokens.includes(token)) {
+                if (token && !fcmTokens.includes(token)) {
                   // associate this new FCM token with this user
                   fcmTokens.push(token);
                   var updates = {}

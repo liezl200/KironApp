@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import {
   ListView,
   View,
+  InteractionManager,
 } from 'react-native';
 
 // Import custom components
@@ -23,8 +24,9 @@ class NotificationList extends Component {
     this.state = {
       selectedNotif: {},
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
+        rowHasChanged: (row1, row2) => true,
       }),
+      rowToDelete: null,
     };
 
     this.notifsRef = firebaseApp.database().ref().child('notifs');
@@ -75,6 +77,7 @@ class NotificationList extends Component {
   }
 
   componentDidMount() {
+    // InteractionManager.runAfterInteractions(() => this._loadData());
     this.listenForUserNotifs(this.userNotifsRef, this.notifsRef);
   }
 
@@ -107,6 +110,9 @@ class NotificationList extends Component {
 
     const onArchivePress = () => {
       // Archives this notification.
+      // this.setState({
+      //   rowToDelete : id
+      // });
       this.userNotifsRef.child(notif._key).child('archived').set(true);
     }
 
