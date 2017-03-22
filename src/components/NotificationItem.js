@@ -30,8 +30,10 @@ class NotificationItem extends Component {
               </View>
 
                 <View style={styles.notifItemContent}>
-                  <Text style={styles.notifItemTitle}>{this.props.notif.title}</Text>
-                  <Text style={styles.notifItemText}>{this.props.notif.text}</Text>
+                  <View>
+                    <Text style={styles.notifItemTitle} numberOfLines={1}>{this.props.notif.title}</Text>
+                    <Text style={styles.notifItemText} numberOfLines={3}>{this.props.notif.text}</Text>
+                  </View>
                 </ View>
 
               <View style={styles.notifItemChevron}>

@@ -61,13 +61,16 @@ class NotificationList extends Component {
               title: ungroupedNotifsSnap.val().title,
               text: ungroupedNotifsSnap.val().text,
               groups: ungroupedNotifsSnap.val().groups,
+              timeSent: ungroupedNotifsSnap.val().timeSent,
               read: notifInfo.val().read,
               archived: notifInfo.val().archived,
               starred: notifInfo.val().starred,
               notifKey: notifKey,
               _key: notifInfo.key // so we can easily modify the notifInfo in the db from the client
             });
-
+            listToPush.sort(function(a, b) { // sort by timeSent in descending order to have most recent notifs come up first
+              return b.timeSent - a.timeSent;
+            })
             console.log(notifs)
             appContext.setState({
               dataSource: appContext.state.dataSource.cloneWithRows(notifs)
@@ -86,13 +89,12 @@ class NotificationList extends Component {
     return (
       <View style = {styles.container}>
 
-        <NotificationModal ref='modal'/>
+        <NotificationModal ref='modal' firebaseUserKey={this.props.firebaseUserKey}/>
 
         <ListView
           dataSource = {this.state.dataSource}
           renderRow = {this._renderNotif.bind(this)}
-          enableEmptySections={true}
-          style = {styles.listview} />
+          enableEmptySections={true} />
 
       </View>
     )

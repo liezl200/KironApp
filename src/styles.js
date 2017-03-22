@@ -1,8 +1,10 @@
 const React = require('react-native');
 const {StyleSheet} = React;
 const constants = {
-  actionColor: '#24CE84'
+  actionColor2: '#969696',
+  actionColor: '#249E84',
 };
+
 
 var styles = StyleSheet.create({
   loginContainer: {
@@ -24,16 +26,6 @@ var styles = StyleSheet.create({
   container: {
     backgroundColor: '#f2f2f2',
     flex: 1,
-  },
-  listview: {
-    flex: 1,
-  },
-  liContainer: {
-    flex: 2,
-  },
-  liText: {
-    color: '#333',
-    fontSize: 16,
   },
   navbar: {
     backgroundColor: '#fff',
@@ -91,16 +83,26 @@ var styles = StyleSheet.create({
   },
   actionText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
   },
   action: {
     backgroundColor: constants.actionColor,
     borderColor: 'transparent',
     borderWidth: 1,
-    paddingLeft: 16,
-    paddingTop: 14,
-    paddingBottom: 16,
+    paddingLeft: 2,
+    paddingRight: 2,
+    paddingTop: 4,
+    paddingBottom: 4,
+  },
+  action2: {
+    backgroundColor: constants.actionColor2,
+    borderColor: 'transparent',
+    borderWidth: 1,
+    paddingLeft: 2,
+    paddingRight: 2,
+    paddingTop: 4,
+    paddingBottom: 4,
   },
   modalBackground: {
     flex: 1,
@@ -108,7 +110,7 @@ var styles = StyleSheet.create({
     padding: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  modalContainer: {
+  modalContainer: { // the rounded "card" container
     borderRadius: 10,
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -127,13 +129,13 @@ var styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  notifItem: {
+  notifItem: { // the middle part of the notification item
     height: 78,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     position: 'relative',
   },
-  notifItemChevron: {
+  notifItemChevron: { // the right part of the notification item
     width: 20,
     borderRadius: 5,
     borderBottomLeftRadius: 0,
@@ -142,21 +144,15 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    // shadowColor: '#000',
-    // shadowOffset: {width: 0, height: 2},
-    // shadowOpacity: 0.1,
-    // shadowRadius: 2,
+
   },
-  notifItemIndicatorContainer: {
+  notifItemIndicatorContainer: { // the left part of the notification item (for read/ unread)
     width: 20,
     borderRadius: 5,
     borderBottomRightRadius: 0,
     borderTopRightRadius: 0,
     paddingTop: 10,
     paddingLeft: 5,
-  },
-  notifItemContentWrapper: {
-    padding: 5,
   },
   notifItemContent: {
     backgroundColor: '#dbd6d6',
@@ -168,10 +164,14 @@ var styles = StyleSheet.create({
   },
   notifItemText: {
     fontSize: 12,
+    minHeight: 0,
+    overflow: 'hidden',
   },
   notifItemTitle: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
+    minHeight: 0,
+    overflow: 'hidden'
   },
   spinner: {
     flex: 1,
