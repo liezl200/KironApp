@@ -1,6 +1,6 @@
 // TODO: COMPONENT NOT IN USE YET, refactor later
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, ListView, View} from 'react-native';
+import { Modal, Text, TouchableOpacity, ListView, ScrollView, View} from 'react-native';
 import {
   Button,
   Icon,
@@ -87,34 +87,36 @@ class NotificationModal extends Component {
           animationType={"fade"}
           transparent={true}
           visible={this.state.modalVisible}
-          onRequestClose={() => {alert("Modal has been closed.")}} >
+          onRequestClose={() => this._setModalVisible(!this.state.modalVisible, this.state.selectedNotif)} >
 
           <View style={styles.modalBackground}>
-            <View style={styles.modalContainer}>
-              <Card
-                title={this.state.selectedNotif == null? 'Title' : this.state.selectedNotif.title} containerStyle={{overflow: 'scroll'}}>
 
-                <Text style={{marginBottom: 10}}>
-                  {this.state.selectedNotif == null? '' : this.state.selectedNotif.text}
-                </Text>
+            <View style={styles.modalContainer}>
+              <TouchableOpacity onPress={() => {
+                this._setModalVisible(!this.state.modalVisible, this.state.selectedNotif)
+              }} style={styles.hideModal}>
+                <Icon
+                  size={25}
+                  name='cancel' />
+              </TouchableOpacity>
+
+              <Card
+                title={this.state.selectedNotif == null? 'Title' : this.state.selectedNotif.title}>
+
+                <ScrollView style={{minHeight: 0}}>
+                  <Text>
+                    {this.state.selectedNotif == null? '' : this.state.selectedNotif.text}
+                  </Text>
+                </ScrollView>
 
                 <ListView
                   dataSource = {this.state.tagsDataSource}
                   renderRow = {this._renderTag.bind(this)}
-                  enableEmptySections={true}
+                  enableEmptySections = {true}
+                  horizontal = {true}
                   contentContainerStyle = {styles.listview} />
 
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-                  <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-                  <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-                </View>
 
-                <TouchableHighlight onPress={() => {
-                  this._setModalVisible(!this.state.modalVisible, this.state.selectedNotif)
-                }}>
-                  <Text>Hide Modal</Text>
-                </TouchableHighlight>
 
               </Card>
             </View>

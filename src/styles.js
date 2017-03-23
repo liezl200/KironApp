@@ -90,23 +90,30 @@ var styles = StyleSheet.create({
     backgroundColor: constants.actionColor,
     borderColor: 'transparent',
     borderWidth: 1,
-    paddingLeft: 2,
-    paddingRight: 2,
+    padding: 4,
+    margin: 2,
+    height: 30,
   },
   action2: {
     backgroundColor: constants.actionColor2,
     borderColor: 'transparent',
     borderWidth: 1,
-    paddingLeft: 2,
-    paddingRight: 2,
+    padding:4,
+    margin: 2,
+    height: 30,
+  },
+  hideModal: {
+    position: 'absolute',
+    marginTop: 8,
+    marginLeft: 8,
+    zIndex: 1,
   },
   listview: {
+    marginTop: 10,
     justifyContent: 'center',
     flexDirection: 'row',
-    flexWrap: 'wrap'
   },
   modalBackground: {
-    flex: 1,
     justifyContent: 'center',
     padding: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -115,7 +122,7 @@ var styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     backgroundColor: '#fff',
-    padding: 20
+    padding: 20,
   },
   notifContainer: {
     backgroundColor: '#dbd6d6',
