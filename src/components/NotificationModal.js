@@ -101,9 +101,9 @@ class NotificationModal extends Component {
               </TouchableOpacity>
 
               <Card
-                title={this.state.selectedNotif == null? 'Title' : this.state.selectedNotif.title}>
+                title={this.state.selectedNotif == null? 'Title' : this.state.selectedNotif.title} containerStyle={{overflow:'scroll'}}>
 
-                <ScrollView style={{minHeight: 0}}>
+                <ScrollView style={{maxHeight: 300}}>
                   <Text>
                     {this.state.selectedNotif == null? '' : this.state.selectedNotif.text}
                   </Text>

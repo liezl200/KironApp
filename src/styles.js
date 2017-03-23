@@ -114,6 +114,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
   },
   modalBackground: {
+    flex: 1,
     justifyContent: 'center',
     padding: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
