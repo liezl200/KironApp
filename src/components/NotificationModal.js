@@ -33,7 +33,7 @@ class NotificationModal extends Component {
   _setModalVisible(visible, notif) {
     // update the tag list based on the selected notif if modal becomes visible
     var groupList = [];
-    if(this.state.selectedNotif && this.state.selectedNotif.groups) {
+    if(notif && notif.groups) {
       // this.userGroupsRef
       //   .once(snapshot){
       //     var userGroups = [];
@@ -42,7 +42,7 @@ class NotificationModal extends Component {
       //     }
       //     this.
           var userGroups = this.state.userGroups;
-          this.state.selectedNotif.groups.forEach(function(gr) {
+          notif.groups.forEach(function(gr) {
             var subscribed = userGroups.indexOf(gr) !== -1;
             groupList.push({
               text: gr,
@@ -78,7 +78,7 @@ class NotificationModal extends Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.listenForUserGroups(this.userGroupsRef);
   }
   render() {
@@ -102,7 +102,7 @@ class NotificationModal extends Component {
                   dataSource = {this.state.tagsDataSource}
                   renderRow = {this._renderTag.bind(this)}
                   enableEmptySections={true}
-                  style = {styles.listview} />
+                  contentContainerStyle = {styles.listview} />
 
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />

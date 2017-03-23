@@ -92,8 +92,6 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 2,
     paddingRight: 2,
-    paddingTop: 4,
-    paddingBottom: 4,
   },
   action2: {
     backgroundColor: constants.actionColor2,
@@ -101,8 +99,11 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 2,
     paddingRight: 2,
-    paddingTop: 4,
-    paddingBottom: 4,
+  },
+  listview: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
   modalBackground: {
     flex: 1,
