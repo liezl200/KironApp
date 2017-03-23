@@ -34,18 +34,28 @@ class NotificationModal extends Component {
     // update the tag list based on the selected notif if modal becomes visible
     var groupList = [];
     if(this.state.selectedNotif && this.state.selectedNotif.groups) {
-      this.state.selectedNotif.groups.forEach(function(gr) {
-        groupList.push({
-          text: gr,
-          _key: gr // use the unique group name as the key
-        });
-      });
+      // this.userGroupsRef
+      //   .once(snapshot){
+      //     var userGroups = [];
+      //     snapshot.forEach(group){
+      //       userGroups.push(group);
+      //     }
+      //     this.
+          var userGroups = this.state.userGroups;
+          this.state.selectedNotif.groups.forEach(function(gr) {
+            var subscribed = userGroups.indexOf(gr) !== -1;
+            groupList.push({
+              text: gr,
+              _key: gr, // use the unique group name as the key
+              subscribed: subscribed,
+            });
+          });
+        //}
     }
     this.setState({
       tagsDataSource: this.state.tagsDataSource.cloneWithRows(groupList), // set the new tag list data source
       selectedNotif: notif, // keeps the currently selected notif in this NotificationModal component's state
       modalVisible: visible // finally, set the modal visible
-
     });
   }
 
@@ -118,10 +128,20 @@ class NotificationModal extends Component {
 
     const onPress = () => {
       // TODO: handle on press here in addition to the Tag itself to actually change our user's group subscriptions
+      tag.subscribed = !tag.subscribed; // toggle subscription
+      var groups = this.state.userGroups;
+      if (tag.subscribed) {
+        console.log('user subscribed')
+        groups.push(tag.text);
+      } else {
+        var unsubscribedGroupIndex = groups.indexOf(tag.text);
+        groups.splice(unsubscribedGroupIndex, 1);
+      }
+      this.userGroupsRef.set(groups);
     }
 
     return (
-      <Tag text={tag.text} onPress={onPress}/>
+      <Tag text={tag.text} subscribed={tag.subscribed} onPress={onPress}/>
     );
   }
 

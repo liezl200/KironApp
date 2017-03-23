@@ -16,11 +16,12 @@ class Tag extends Component {
 	    super(props);
 
 	    this.state = {
-	      selected: false
+	      selected: this.props.subscribed
 	    };
 	  }
 
 	_toggleSelected() {
+		this.props.onPress();
 		this.setState({selected:!this.state.selected});
 	}
 	render() {
