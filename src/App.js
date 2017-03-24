@@ -28,6 +28,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.menuList = [
+      {name: 'Home', icon: 'home'},
       {name: 'Campus', icon: 'school'},
       {name: 'Settings', icon: 'settings'},
       {name: 'Support', icon: 'supervisor-account'},
@@ -46,6 +47,12 @@ class App extends Component {
   _toggleSideMenu () {
     this.setState({
       isOpen: !this.state.isOpen
+    })
+  }
+
+  _updateMenuState (menuState) {
+    this.setState({
+      isOpen: menuState
     })
   }
 
@@ -81,7 +88,8 @@ class App extends Component {
       return (
         <SideMenu
             isOpen = {this.state.isOpen}
-            menu = {MenuComponent}>
+            menu = {MenuComponent}
+            onChange={(isOpen) => this._updateMenuState(isOpen)} >
 
           <StatusBar
             title="Notifications"

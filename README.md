@@ -76,6 +76,8 @@ MUST ENABLE https://console.firebase.google.com/project/kirontestapp/authenticat
 				find it here https://console.developers.google.com/apis/credentials?project=kirontestapp
 				https://developer.android.com/studio/publish/app-signing.html#sign-auto
 			when generating google-services.json using https://developers.google.com/identity/sign-in/android/start-integrating make sure you add the SHA-1 fingerprint on the site BEFORE downloading google-services.json from the website
+			on `react-native run-android`, if you get an error `SDK location not found. Define location with sdk.dir in the local.properties file or with an ANDROID_HOME environment variable`, then add `android/local.properties` file with the line `sdk.dir = /Users/<username>/Library/Android/sdk`. (most likely path to Android sdk if you are using Android Studio)
+				http://stackoverflow.com/questions/34532063/finding-android-sdk-on-mac-and-adding-to-path
 
 
 FIREBASE STUFF

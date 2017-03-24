@@ -177,8 +177,8 @@ var styles = StyleSheet.create({
     overflow: 'hidden',
   },
   notifItemTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: '#444',
+    fontSize: 18,
     minHeight: 0,
     overflow: 'hidden'
   },
