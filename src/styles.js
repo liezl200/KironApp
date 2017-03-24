@@ -2,7 +2,7 @@ const React = require('react-native');
 const {StyleSheet} = React;
 const constants = {
   actionColor2: '#969696',
-  actionColor: '#249E84',
+  actionColor: '#2599b2',
 };
 
 
@@ -160,7 +160,7 @@ var styles = StyleSheet.create({
     borderRadius: 5,
     borderBottomRightRadius: 0,
     borderTopRightRadius: 0,
-    paddingTop: 10,
+    paddingTop: 15, // distance of dot from top of notification
     paddingLeft: 5,
   },
   notifItemContent: {
@@ -173,12 +173,14 @@ var styles = StyleSheet.create({
   },
   notifItemText: {
     fontSize: 12,
+    lineHeight: 16,
     minHeight: 0,
     overflow: 'hidden',
   },
   notifItemTitle: {
     color: '#444',
     fontSize: 18,
+    lineHeight: 26,
     minHeight: 0,
     overflow: 'hidden'
   },

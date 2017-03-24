@@ -24,7 +24,7 @@ class NotificationItem extends Component {
                 {!this.props.notif.read &&
                   <Icon
                     size={10}
-                    color="#001E8C"
+                    color="#2599b2"
                     name='fiber-manual-record' />
                 }
               </View>
@@ -32,7 +32,7 @@ class NotificationItem extends Component {
                 <View style={styles.notifItemContent}>
                   <View>
                     <Text style={styles.notifItemTitle} numberOfLines={1}>{this.props.notif.title}</Text>
-                    <Text style={styles.notifItemText} numberOfLines={3}>{this.props.notif.text}</Text>
+                    <Text style={styles.notifItemText} numberOfLines={2}>{this.props.notif.text}</Text>
                   </View>
                 </ View>
 
