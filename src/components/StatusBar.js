@@ -1,30 +1,33 @@
-'use strict';
-import React, {Component} from 'react';
-import ReactNative from 'react-native';
+import React, { PropTypes } from 'react';
+import { Text, View, Image } from 'react-native';
+
 const styles = require('../styles.js');
-const { StyleSheet, Text, View, Image} = ReactNative;
 
-class StatusBar extends Component {
-  render() {
-    return (
-      <View>
+const propTypes = {
+  user: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  menuButton: PropTypes.element.isRequired,
+};
 
-        <View style={styles.statusbar}>
-          <Text style={styles.statusText}>{this.props.user.email}</Text>
-        </View>
-        <View style={styles.navbar}>
+function StatusBar(props) {
+  return (
+    <View>
 
-          <Text style={styles.navbarTitle}>{this.props.title}</Text>
-        </View>
-        <View style={styles.navbarIcon}>
-          {this.props.menuButton}
-        </View>
-        <View style={styles.userAvatarContainer}>
-          <Image style={styles.userAvatar} source={{uri:this.props.user.photo}} />
-        </View>
+      <View style={styles.statusbar}>
+        <Text style={styles.statusText}>{props.user.email}</Text>
       </View>
-    );
-  }
-}
+      <View style={styles.navbar}>
 
+        <Text style={styles.navbarTitle}>{props.title}</Text>
+      </View>
+      <View style={styles.navbarIcon}>
+        {props.menuButton}
+      </View>
+      <View style={styles.userAvatarContainer}>
+        <Image style={styles.userAvatar} source={{ uri: props.user.photo }} />
+      </View>
+    </View>
+  );
+}
+StatusBar.propTypes = propTypes;
 module.exports = StatusBar;

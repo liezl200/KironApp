@@ -1,12 +1,11 @@
-const React = require('react-native');
-const {StyleSheet} = React;
+import { StyleSheet } from 'react-native';
+
 const constants = {
   actionColor2: '#969696',
   actionColor: '#2599b2',
 };
 
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -44,7 +43,7 @@ var styles = StyleSheet.create({
     height: 40,
     flexDirection: 'row',
     justifyContent: 'center',
-    padding: 10
+    padding: 10,
   },
   navbarIcon: {
     position: 'absolute',
@@ -98,7 +97,7 @@ var styles = StyleSheet.create({
     backgroundColor: constants.actionColor2,
     borderColor: 'transparent',
     borderWidth: 1,
-    padding:4,
+    padding: 4,
     margin: 2,
     height: 30,
   },
@@ -129,7 +128,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#dbd6d6',
     borderRadius: 5,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
@@ -182,13 +181,13 @@ var styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 26,
     minHeight: 0,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   spinner: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
 module.exports = styles;
