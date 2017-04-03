@@ -13,7 +13,6 @@ const propTypes = {
 };
 
 function NotificationItem(props) {
-  const swipeoutBtns = [{ text: 'Archive', backgroundColor: '#FF1919', onPress: props.onArchivePress }];
   return (
     <View>
       <TouchableOpacity onPress={props.onPress}>
