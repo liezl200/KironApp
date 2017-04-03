@@ -7,7 +7,6 @@ import {
 const styles = require('../styles.js');
 
 const propTypes = {
-  onArchivePress: PropTypes.func.isRequired,
   onPress: PropTypes.func.isRequired,
   notif: PropTypes.object.isRequired,
 };
