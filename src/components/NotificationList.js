@@ -1,10 +1,7 @@
-'use strict';
-
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   ListView,
   View,
-  InteractionManager,
 } from 'react-native';
 
 // Import custom components
@@ -15,6 +12,10 @@ const styles = require('../styles.js');
 
 const firebaseApp = require('../modules/Firebase').firebaseApp;
 
+const propTypes = {
+  firebaseUserKey: PropTypes.string.isRequired,
+};
+
 class NotificationList extends Component {
 
 
@@ -24,36 +25,38 @@ class NotificationList extends Component {
     this.state = {
       selectedNotif: {},
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => true,
+        rowHasChanged: () => true,
       }),
       rowToDelete: null,
     };
 
     this.notifsRef = firebaseApp.database().ref().child('notifs');
     this.allNotifsRef = firebaseApp.database().ref().child('allNotifs');
-    console.log(this.props.firebaseUserKey);
     this.userNotifsRef = firebaseApp.database().ref()
       .child('users')
       .child(this.props.firebaseUserKey)
       .child('notifsInfo');
     // this.notifsRef.keepSynced(true); // TODO(liezl): actually enable persistence natively
     // TODO(liezl): might have to find out how to explicitly force a sync when user requests reload
+    this.renderNotif = this.renderNotif.bind(this);
+  }
+
+  componentDidMount() {
+    this.listenForUserNotifs(this.userNotifsRef, this.notifsRef);
   }
 
   listenForUserNotifs(userNotifsRef, notifsRef) { // TODO: fix allNotifs case?
-    var appContext = this;
-    // TODO verify on vs once flows
+    const appContext = this;
     userNotifsRef.on('value', (snap) => {
-      var notifs = [];
-      var archivedNotifs = [];
-      // STEP 1: get all this user's notifs from allNotifs and notifsInfo {notifKey: {title: , text: , read: , starred: , archived: , _key: }}
-      snap.forEach((notifInfo) => { // notifInfo.val().key is each key of the notification in the user's notifInfo list
-        console.log(notifInfo.val())
-        var notifKey = notifInfo.val().notifKey;
+      const notifs = [];
+      const archivedNotifs = [];
+      snap.forEach((notifInfo) => {
+        // notifInfo.val().key is each key of the notification in the user's notifInfo list
+        const notifKey = notifInfo.val().notifKey;
         notifsRef.child(notifKey)
-          .once("value", function(ungroupedNotifsSnap) { // use 'once' because notifications never get deleted from db (TODO: allow edit capabilities for the notification content)
-            var listToPush = notifs;
-            if(notifInfo.val().archived) {
+          .once('value', (ungroupedNotifsSnap) => {
+            let listToPush = notifs;
+            if (notifInfo.val().archived) {
               listToPush = archivedNotifs;
             }
 
@@ -65,65 +68,58 @@ class NotificationList extends Component {
               read: notifInfo.val().read,
               archived: notifInfo.val().archived,
               starred: notifInfo.val().starred,
-              notifKey: notifKey,
-              _key: notifInfo.key // so we can easily modify the notifInfo in the db from the client
+              notifKey,
+              key: notifInfo.key,
             });
-            listToPush.sort(function(a, b) { // sort by timeSent in descending order to have most recent notifs come up first
-              return b.timeSent - a.timeSent;
-            })
-            console.log(notifs)
+
+            listToPush.sort((a, b) => (b.timeSent - a.timeSent));
+
             appContext.setState({
-              dataSource: appContext.state.dataSource.cloneWithRows(notifs)
+              dataSource: appContext.state.dataSource.cloneWithRows(notifs),
             });
-          })
-      })
+          });
+      });
     });
   }
 
-  componentDidMount() {
-    // InteractionManager.runAfterInteractions(() => this._loadData());
-    this.listenForUserNotifs(this.userNotifsRef, this.notifsRef);
+  renderNotif(notif) {
+    const onPress = () => {
+      // Pop open notification modal.
+      this.userNotifsRef.child(notif.key).child('read').set(true);
+      this.modal.setModalVisible(true, notif);
+      this.setState({
+        selectedNotif: notif,
+      });
+    };
+
+    const onArchivePress = () => {
+      // Archives this notification.
+      this.userNotifsRef.child(notif.key).child('archived').set(true);
+    };
+
+    return (
+      <NotificationItem notif={notif} onPress={onPress} onArchivePress={onArchivePress} />
+    );
   }
 
   render() {
     return (
-      <View style = {styles.container}>
+      <View style={styles.container}>
 
-        <NotificationModal ref='modal' firebaseUserKey={this.props.firebaseUserKey}/>
+        <NotificationModal
+          ref={(c) => { this.modal = c; }} // store reference to child modal
+          firebaseUserKey={this.props.firebaseUserKey}
+        />
 
         <ListView
-          dataSource = {this.state.dataSource}
-          renderRow = {this._renderNotif.bind(this)}
-          enableEmptySections={true} />
+          dataSource={this.state.dataSource}
+          renderRow={this.renderNotif}
+          enableEmptySections
+        />
 
       </View>
-    )
-  }
-
-  _renderNotif(notif) {
-
-    const onPress = () => {
-      // Pop open notification modal.
-      this.userNotifsRef.child(notif._key).child('read').set(true);
-      this.refs.modal._setModalVisible(true, notif);
-      this.setState({
-        selectedNotif: notif
-      });
-    }
-
-    const onArchivePress = () => {
-      // Archives this notification.
-      // this.setState({
-      //   rowToDelete : id
-      // });
-      this.userNotifsRef.child(notif._key).child('archived').set(true);
-    }
-
-    return (
-      <NotificationItem notif={notif} onPress={onPress} onArchivePress={onArchivePress}/>
     );
   }
-
 }
-
+NotificationList.propTypes = propTypes;
 module.exports = NotificationList;
