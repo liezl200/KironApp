@@ -1,51 +1,59 @@
-import React, {Component} from 'react';
+import React, { PropTypes } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import Swipeout from 'react-native-swipe-out';
 import {
-  Icon
+  Icon,
 } from 'react-native-elements';
+
 const styles = require('../styles.js');
 
+const propTypes = {
+  onArchivePress: PropTypes.func.isRequired,
+  onPress: PropTypes.func.isRequired,
+  notif: PropTypes.object.isRequired,
+};
 
-class NotificationItem extends Component {
+function NotificationItem(props) {
+  const swipeoutBtns = [{ text: 'Archive', backgroundColor: '#FF1919', onPress: props.onArchivePress }];
+  return (
+    <Swipeout
+      right={swipeoutBtns}
+      backgroundColor={'#f2f2f2'}
+    >
 
-  render() {
-    var swipeoutBtns = [{text: 'Archive', backgroundColor: '#FF1919', onPress: this.props.onArchivePress }];
-    return (
-      <Swipeout
-        right={swipeoutBtns}
-        backgroundColor={'#f2f2f2'}>
+      <TouchableOpacity onPress={props.onPress}>
+        <View style={styles.notifContainer}>
+          <View style={styles.notifItem}>
 
-        <TouchableOpacity onPress={this.props.onPress}>
-          <View style={styles.notifContainer}>
-            <View style={styles.notifItem}>
-
-              <View style={styles.notifItemIndicatorContainer}>
-                {!this.props.notif.read &&
-                  <Icon
-                    size={10}
-                    color="#2599b2"
-                    name='fiber-manual-record' />
-                }
-              </View>
-
-                <View style={styles.notifItemContent}>
-                  <View>
-                    <Text style={styles.notifItemTitle} numberOfLines={1}>{this.props.notif.title}</Text>
-                    <Text style={styles.notifItemText} numberOfLines={2}>{this.props.notif.text}</Text>
-                  </View>
-                </ View>
-
-              <View style={styles.notifItemChevron}>
+            <View style={styles.notifItemIndicatorContainer}>
+              {!props.notif.read &&
                 <Icon
-                  name= 'chevron-right' color='#444' />
+                  size={10}
+                  color="#2599b2"
+                  name="fiber-manual-record"
+                />
+              }
+            </View>
+
+            <View style={styles.notifItemContent}>
+              <View>
+                <Text style={styles.notifItemTitle} numberOfLines={1}>{props.notif.title}</Text>
+                <Text style={styles.notifItemText} numberOfLines={2}>{props.notif.text}</Text>
               </View>
             </View>
+
+            <View style={styles.notifItemChevron}>
+              <Icon
+                name="chevron-right"
+                color="#444"
+              />
+            </View>
           </View>
-        </TouchableOpacity>
-      </Swipeout>
-    );
-  }
+        </View>
+      </TouchableOpacity>
+    </Swipeout>
+  );
 }
 
+NotificationItem.propTypes = propTypes;
 module.exports = NotificationItem;
