@@ -1,3 +1,43 @@
+## Prerequisites
+### Both
+1. Install [React Native](https://facebook.github.io/react-native/docs/getting-started.html)
+2. Install yarn: `brew install yarn`
+
+### Android
+1. Follow additional Android setup instructions for React Native: ![Android React Native setup instructions](http://i.imgur.com/jy3SphM.png "Android setup")
+
+### iOS
+1. Install [Cocoapods(https://guides.cocoapods.org/using/getting-started.html)
+
+## SETUP AND RUN
+### Both
+1. `git clone https://github.com/liezl200/KironApp.git`
+2. `yarn`
+
+### Android
+1. Create a file `android/local.properties`, which should contain a single line `sdk.dir = path/to/android/sdk`, which will be `/Users/<username>/Library/Android/sdk` if you use Android Studio on Mac
+- This command will do that for you: `cd android && touch local.properties && echo "sdk.dir = /Users/<username>/Library/Android/sdk" >> local.properties && cd ..`
+2. Start your emulator of choice (Android Studio, Genymotion, etc.), or plug in a physical Android device and enable [USB debugging](https://developer.android.com/studio/run/device.html).
+3. Run `react-native run-android`
+4. Launch the app on the device
+5. If you are running on a physical device and get a "BatchedBridge" error when opening the app, run this command in Terminal `path/to/androidsdk/platform-tools/adb reverse tcp:8081 tcp:8081`, for example, if you use Android Studio on Mac, this command would be `/Users/username/Library/Android/sdk/platform-tools/adb reverse tcp:8081 tcp:8081`
+
+### iOS
+1. `cd ios && pod install`
+2. `open KironApp.xcworkspace` OR simply double click KironApp/ios/KironApp.xcworkspace in Finder / system file explorer:
+![KironApp.xcworkspace file in Finder](http://i.imgur.com/ugXO7V0.png "KironApp.xcworkspace file in Finder")
+Once it loads you can close Xcode -- don't worry about waiting for Xcode to index the files:
+![KironApp.xcworkspace indexing](http://i.imgur.com/ZYbslyK.png "KironApp indexing")
+
+3. Run `xcodebuild -workspace KironApp.xcworkspace -list` and make sure you see roughly the following list of schemas:
+![Good Xcode build](http://i.imgur.com/C7CPi6G.png "Good Xcode build")
+If you have something like the following then make sure you can open the `KironApp.xcworkspace` in Xcode:
+![Bad Xcode build](http://i.imgur.com/WAvGQSJ.png "Bad Xcode build")
+
+4. `cd ..`
+5. `react-native run-ios`
+
+-----------
 SETUP NOTES
 
 
