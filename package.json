@@ -16,7 +16,6 @@
     "react-native-fcm": "^2.5.5",
     "react-native-firebase-auth": "0.0.11",
     "react-native-google-signin": "^0.8.1",
-    "react-native-swipe-out": "^2.0.14",
     "react-native-vector-icons": "3.0.0"
   },
   "devDependencies": {

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import Swipeout from 'react-native-swipe-out';
 import {
   Icon,
 } from 'react-native-elements';
@@ -16,11 +15,7 @@ const propTypes = {
 function NotificationItem(props) {
   const swipeoutBtns = [{ text: 'Archive', backgroundColor: '#FF1919', onPress: props.onArchivePress }];
   return (
-    <Swipeout
-      right={swipeoutBtns}
-      backgroundColor={'#f2f2f2'}
-    >
-
+    <View>
       <TouchableOpacity onPress={props.onPress}>
         <View style={styles.notifContainer}>
           <View style={styles.notifItem}>
@@ -51,7 +46,7 @@ function NotificationItem(props) {
           </View>
         </View>
       </TouchableOpacity>
-    </Swipeout>
+    </View>
   );
 }
 
