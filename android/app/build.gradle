@@ -134,26 +134,26 @@ dependencies {
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"
 
-    compile 'com.google.android.gms:play-services-auth:9.8.0' // should be at least 9.0.
-    compile 'com.google.android.gms:play-services-base:9.8.0'
+    compile 'com.google.android.gms:play-services-auth:10.0.0' // should be at least 9.0.
+    compile 'com.google.android.gms:play-services-base:10.0.0'
 
     compile(project(":react-native-google-signin")){
         exclude group: "com.google.android.gms" // very important
     }
 
-    compile ('com.google.firebase:firebase-core:9.8.0') {
+    compile ('com.google.firebase:firebase-core:10.0.0') {
         exclude group: "com.google.android.gms"
     }
-    compile ('com.google.firebase:firebase-auth:9.8.0') {
+    compile ('com.google.firebase:firebase-auth:10.0.0') {
         exclude group: "com.google.android.gms"
     }
-    compile ('com.google.firebase:firebase-database:9.8.0') {
+    compile ('com.google.firebase:firebase-database:10.0.0') {
         exclude group: "com.google.android.gms"
     }
-    compile ('com.google.firebase:firebase-storage:9.8.0') {
+    compile ('com.google.firebase:firebase-storage:10.0.0') {
         exclude group: "com.google.android.gms"
     }
-    compile ('com.google.firebase:firebase-messaging:9.8.0') {
+    compile ('com.google.firebase:firebase-messaging:10.0.0') {
         exclude group: "com.google.android.gms"
     }
 
@@ -164,7 +164,7 @@ configurations.all {
             // If different projects require different versions of
             // Google Play Services it causes a crash on run.
             // Fix by overriding version for all projects.
-            details.useVersion('9.8.0')
+            details.useVersion('10.0.0')
         }
     }
 }
