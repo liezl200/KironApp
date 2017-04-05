@@ -5,12 +5,12 @@ import {
 } from 'react-native';
 
 // Import custom components
-const NotificationItem = require('./NotificationItem');
-const NotificationModal = require('./NotificationModal');
+import NotificationItem from './NotificationItem';
+import NotificationModal from './NotificationModal';
 
-const styles = require('../styles.js');
+import styles from '../styles';
 
-const firebaseApp = require('../modules/Firebase').firebaseApp;
+import firebaseApp from '../modules/Firebase';
 
 const propTypes = {
   firebaseUserKey: PropTypes.string.isRequired,

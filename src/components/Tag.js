@@ -5,7 +5,7 @@ import {
   Text,
 } from 'react-native';
 
-const styles = require('../styles.js');
+import styles from '../styles';
 
 const constants = styles.constants;
 

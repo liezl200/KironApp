@@ -4,7 +4,7 @@ import {
   Icon,
 } from 'react-native-elements';
 
-const styles = require('../styles.js');
+import styles from '../styles';
 
 const propTypes = {
   onPress: PropTypes.func.isRequired,

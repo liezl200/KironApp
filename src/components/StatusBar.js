@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Text, View, Image } from 'react-native';
 
-const styles = require('../styles.js');
+import styles from '../styles';
 
 const propTypes = {
   user: PropTypes.object.isRequired,

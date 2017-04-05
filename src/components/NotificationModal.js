@@ -5,9 +5,9 @@ import {
   Card,
 } from 'react-native-elements';
 
-const styles = require('../styles.js');
-const firebaseApp = require('../modules/Firebase').firebaseApp;
-const Tag = require('./Tag');
+import styles from '../styles';
+import firebaseApp from '../modules/Firebase';
+import Tag from './Tag';
 
 const propTypes = {
   firebaseUserKey: PropTypes.string.isRequired,

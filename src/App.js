@@ -9,17 +9,16 @@ import {
 
 import FCM from 'react-native-fcm';
 
-
 // Import custom components
-const StatusBar = require('./components/StatusBar');
-const NotificationList = require('./components/NotificationList');
-const MenuListItem = require('./components/MenuListItem');
-const Spinner = require('./components/Spinner');
+import StatusBar from './components/StatusBar';
+import NotificationList from './components/NotificationList';
+import MenuListItem from './components/MenuListItem';
+import Spinner from './components/Spinner';
 
-const styles = require('./styles');
+import styles from './styles';
 
 // Import modules
-const firebaseApp = require('./modules/Firebase').firebaseApp;
+import firebaseApp from './modules/Firebase';
 
 const usersRef = firebaseApp.database().ref().child('users');
 

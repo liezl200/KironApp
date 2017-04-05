@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 
-const styles = require('../styles.js');
+import styles from '../styles';
 
 const propTypes = {
   size: PropTypes.string.isRequired,

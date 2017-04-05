@@ -12,14 +12,11 @@ import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import * as firebase from 'firebase';
 
 // Import components
-const App = require('./App');
-const Spinner = require('./components/Spinner');
-
-// TODO: Add OAuth options that will allow a forgot your password
+import App from './App';
+import Spinner from './components/Spinner';
+import styles from './styles';
 
 const emailDomain = 'kiron.ngo';
-
-const styles = require('./styles.js');
 
 class Login extends Component {
   constructor(props) {
