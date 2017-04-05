@@ -43,7 +43,7 @@ class App extends Component {
       { name: 'Home', icon: 'home', onPress: this.toggleSideMenu },
       { name: 'Campus', icon: 'school', url: 'https://campus.kiron.ngo' },
       { name: 'Settings', icon: 'settings', url: 'https://campus.kiron.ngo/profile' },
-      { name: 'Support', icon: 'supervisor-account', url: 'https://campus.kiron.ngo/trouble' },
+      { name: 'Support', icon: 'supervisor-account', url: 'https://kiron.ladesk.com/' },
       { name: 'Help', icon: 'help', onPress: null, url: 'https://campus.kiron.ngo/contact' },
       { name: 'Logout', icon: 'power-settings-new', onPress: this.props.signOut },
     ];
