@@ -6,6 +6,8 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
+  Image,
+  Linking,
 } from 'react-native';
 
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
@@ -15,6 +17,7 @@ import * as firebase from 'firebase';
 import App from './App';
 import Spinner from './components/Spinner';
 import styles from './styles';
+import KironLogo from './img/k.png';
 
 const emailDomain = 'kiron.ngo';
 
@@ -129,12 +132,43 @@ class Login extends Component {
     return null;
   }
 
+  renderApplyLink() {
+    if (!this.state.loading) {
+      return (
+        <Text
+          style={{ color: 'white' }}
+          onPress={() => Linking.openURL('https://apply.kiron.ngo/register')}
+        >
+            or Apply
+        </Text>
+      );
+    }
+    return null;
+  }
+
+  renderForgotPasswordLink() {
+    if (!this.state.loading) {
+      return (
+        <Text
+          style={{ color: 'white', paddingTop: 20 }}
+          onPress={() => Linking.openURL('https://campus.kiron.ngo/reset')}
+        >
+            Forgot your password?
+        </Text>
+      );
+    }
+    return null;
+  }
+
   render() {
     if (!this.state.user) {
       return (
         <View style={styles.loginContainer}>
-          {this.renderButton()}
+          <Image source={KironLogo} style={{ width: 200, height: 200 }} />
           {this.renderSignInError()}
+          {this.renderButton()}
+          {this.renderApplyLink()}
+          {this.renderForgotPasswordLink()}
         </View>
       );
     }
