@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Modal, Text, TouchableOpacity, ListView, ScrollView, View } from 'react-native';
+import { Modal, TouchableOpacity, ListView, ScrollView, View } from 'react-native';
 import {
   Icon,
   Card,
