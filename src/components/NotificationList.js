@@ -17,8 +17,6 @@ const propTypes = {
 };
 
 class NotificationList extends Component {
-
-
   constructor(props) {
     super(props);
 
@@ -27,7 +25,6 @@ class NotificationList extends Component {
       dataSource: new ListView.DataSource({
         rowHasChanged: () => true,
       }),
-      rowToDelete: null,
     };
 
     this.notifsRef = firebaseApp.database().ref().child('notifs');
@@ -45,39 +42,34 @@ class NotificationList extends Component {
     this.listenForUserNotifs(this.userNotifsRef, this.notifsRef);
   }
 
-  listenForUserNotifs(userNotifsRef, notifsRef) { // TODO: fix allNotifs case?
-    const appContext = this;
-    userNotifsRef.on('value', (snap) => {
-      const notifs = [];
-      const archivedNotifs = [];
-      snap.forEach((notifInfo) => {
-        // notifInfo.val().key is each key of the notification in the user's notifInfo list
-        const notifKey = notifInfo.val().notifKey;
-        notifsRef.child(notifKey)
-          .once('value', (ungroupedNotifsSnap) => {
-            let listToPush = notifs;
-            if (notifInfo.val().archived) {
-              listToPush = archivedNotifs;
-            }
-
-            listToPush.push({
-              title: ungroupedNotifsSnap.val().title,
-              text: ungroupedNotifsSnap.val().text,
-              groups: ungroupedNotifsSnap.val().groups,
-              timeSent: ungroupedNotifsSnap.val().timeSent,
-              read: notifInfo.val().read,
-              archived: notifInfo.val().archived,
-              starred: notifInfo.val().starred,
-              notifKey,
-              key: notifInfo.key,
-            });
-
-            listToPush.sort((a, b) => (b.timeSent - a.timeSent));
-
-            appContext.setState({
-              dataSource: appContext.state.dataSource.cloneWithRows(notifs),
-            });
+  async listenForUserNotifs(userNotifsRef, notifsRef) { // TODO: fix allNotifs case?
+    userNotifsRef.on('value', async (snap) => {
+      const notifInfos = snap.val();
+      const all = Object.keys(notifInfos).map(notifInfoKey => new Promise((resolve) => {
+        const notifInfo = notifInfos[notifInfoKey];
+        const notifKey = notifInfo.notifKey;
+        notifsRef.child(notifKey).once('value', (ungroupedNotifsSnap) => {
+          resolve({
+            title: ungroupedNotifsSnap.val().title,
+            text: ungroupedNotifsSnap.val().text,
+            groups: ungroupedNotifsSnap.val().groups,
+            timeSent: ungroupedNotifsSnap.val().timeSent,
+            read: notifInfo.read,
+            archived: notifInfo.archived,
+            starred: notifInfo.starred,
+            key: notifInfoKey,
           });
+        });
+      }));
+
+      const notifs = await Promise.all(all);
+
+      const sorted = notifs
+        .filter(notification => !notification.archived)
+        .sort((a, b) => (b.timeSent - a.timeSent));
+
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(sorted),
       });
     });
   }
