@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 import {
   List,
-  ListItem,
   Icon,
   SideMenu,
 } from 'react-native-elements';
@@ -14,6 +13,7 @@ import FCM from 'react-native-fcm';
 // Import custom components
 const StatusBar = require('./components/StatusBar');
 const NotificationList = require('./components/NotificationList');
+const MenuListItem = require('./components/MenuListItem');
 const Spinner = require('./components/Spinner');
 
 const styles = require('./styles');
@@ -31,21 +31,21 @@ const propTypes = {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.menuList = [
-      { name: 'Home', icon: 'home' },
-      { name: 'Campus', icon: 'school' },
-      { name: 'Settings', icon: 'settings' },
-      { name: 'Support', icon: 'supervisor-account' },
-      { name: 'Help', icon: 'help', onPress: null },
-      { name: 'Logout', icon: 'power-settings-new', onPress: this.props.signOut },
-    ];
-
     this.state = {
       isOpen: false,
       firebaseUserKey: '',
     };
     this.notifsRef = firebaseApp.database().ref().child('notifs');
     this.toggleSideMenu = this.toggleSideMenu.bind(this);
+
+    this.menuList = [
+      { name: 'Home', icon: 'home', onPress: this.toggleSideMenu },
+      { name: 'Campus', icon: 'school', url: 'https://campus.kiron.ngo' },
+      { name: 'Settings', icon: 'settings', url: 'https://campus.kiron.ngo/profile' },
+      { name: 'Support', icon: 'supervisor-account', url: 'https://campus.kiron.ngo/trouble' },
+      { name: 'Help', icon: 'help', onPress: null, url: 'https://campus.kiron.ngo/contact' },
+      { name: 'Logout', icon: 'power-settings-new', onPress: this.props.signOut },
+    ];
   }
 
   componentDidMount() {
@@ -118,8 +118,9 @@ class App extends Component {
         <List containerStyle={{ marginBottom: 20 }}>
           {
             this.menuList.map(l => (
-              <ListItem
+              <MenuListItem
                 onPress={l.onPress}
+                url={l.url}
                 key={l.name}
                 title={l.name}
                 leftIcon={{ name: l.icon }}
