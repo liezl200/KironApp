@@ -126,7 +126,7 @@ class Login extends Component {
       && !this.state.user.email.endsWith(emailDomain))
       || this.state.wrongDomainError)) {
       return (
-        <Text>Please login with your {emailDomain} account</Text>
+        <Text style={{ color: 'white' }}>Please login with your {emailDomain} account</Text>
       );
     }
     return null;
@@ -150,7 +150,7 @@ class Login extends Component {
     if (!this.state.loading) {
       return (
         <Text
-          style={{ color: 'white', paddingTop: 20 }}
+          style={{ color: 'white', paddingTop: 50 }}
           onPress={() => Linking.openURL('https://campus.kiron.ngo/reset')}
         >
             Forgot your password?
