@@ -37,6 +37,9 @@ If you have something like the following then make sure you can open the `KironA
 4. `cd ..`
 5. `react-native run-ios`
 
+## Adding new packages
+1. Use `yarn add packagename` instead of `npm install packagename`.
+
 -----------
 SETUP NOTES
 

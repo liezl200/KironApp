@@ -4,7 +4,7 @@ import {
   Icon,
   Card,
 } from 'react-native-elements';
-
+import HTMLView from 'react-native-htmlview';
 import styles from '../styles';
 import firebaseApp from '../modules/Firebase';
 import Tag from './Tag';
@@ -14,7 +14,6 @@ const propTypes = {
 };
 
 class NotificationModal extends Component {
-
   constructor(props) {
     super(props);
 
@@ -119,15 +118,14 @@ class NotificationModal extends Component {
               />
             </TouchableOpacity>
 
+
             <Card
               title={this.state.selectedNotif == null ? 'Title' : this.state.selectedNotif.title}
               containerStyle={{ overflow: 'scroll' }}
             >
 
               <ScrollView style={{ maxHeight: 300 }}>
-                <Text>
-                  {this.state.selectedNotif == null ? '' : this.state.selectedNotif.text}
-                </Text>
+                <HTMLView value={this.state.selectedNotif == null ? '' : this.state.selectedNotif.text} />
               </ScrollView>
 
               <ListView

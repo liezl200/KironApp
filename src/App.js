@@ -6,7 +6,6 @@ import {
   Icon,
   SideMenu,
 } from 'react-native-elements';
-
 import FCM from 'react-native-fcm';
 
 // Import custom components
