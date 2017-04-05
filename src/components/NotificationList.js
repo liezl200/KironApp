@@ -96,7 +96,7 @@ class NotificationList extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.notificationListContainer}>
 
         <NotificationModal
           ref={(c) => { this.modal = c; }} // store reference to child modal

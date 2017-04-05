@@ -12,19 +12,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#001E8C',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  googleSigninButton: {
+    width: 212,
+    height: 48,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  container: {
-    backgroundColor: '#f2f2f2',
+  sideMenuStyle: {
     flex: 1,
+    backgroundColor: '#ededed',
+    paddingTop: 57,
   },
   navbar: {
     backgroundColor: '#fff',
@@ -40,7 +35,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#eee',
     borderColor: 'transparent',
     borderWidth: 1,
-    height: 40,
+    height: 50,
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 10,
@@ -183,10 +178,19 @@ const styles = StyleSheet.create({
     minHeight: 0,
     overflow: 'hidden',
   },
+  notificationListContainer: {
+    backgroundColor: '#f2f2f2',
+    flex: 1,
+  },
   spinner: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  sideMenuContainer: {
+    flex: 1,
+    backgroundColor: '#ededed',
+    paddingTop: 57,
   },
 });
 

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 
 import {
   List,
@@ -14,6 +14,9 @@ import StatusBar from './components/StatusBar';
 import NotificationList from './components/NotificationList';
 import MenuListItem from './components/MenuListItem';
 import Spinner from './components/Spinner';
+
+import KironBrand from './img/kiron.png';
+import KironLogo from './img/k.png';
 
 import styles from './styles';
 
@@ -113,7 +116,7 @@ class App extends Component {
 
   render() {
     const MenuComponent = (
-      <View style={{ flex: 1, backgroundColor: '#ededed', paddingTop: 50 }}>
+      <View style={styles.sideMenuStyle}>
         <List containerStyle={{ marginBottom: 20 }}>
           {
             this.menuList.map(l => (
@@ -128,6 +131,7 @@ class App extends Component {
             ))
           }
         </List>
+        <Image source={KironLogo} style={{ width: 100, height: 100, marginLeft: 90 }} />
       </View>
     );
 
@@ -155,9 +159,7 @@ class App extends Component {
           />
           <NotificationList user={this.props.user} firebaseUserKey={this.state.firebaseUserKey} />
           <View style={styles.bottombar}>
-            <TouchableOpacity>
-              <Text>Archive</Text>
-            </TouchableOpacity>
+            <Image source={KironBrand} style={{ width: 100, height: 32 }} />
           </View>
         </SideMenu>
       );
