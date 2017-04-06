@@ -55,8 +55,6 @@ class NotificationList extends Component {
             groups: ungroupedNotifsSnap.val().groups,
             timeSent: ungroupedNotifsSnap.val().timeSent,
             read: notifInfo.read,
-            archived: notifInfo.archived,
-            starred: notifInfo.starred,
             key: notifInfoKey,
           });
         });
