@@ -1,5 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { Modal, TouchableOpacity, ListView, ScrollView, View } from 'react-native';
+import {
+  Modal,
+  TouchableOpacity,
+  ListView,
+  ScrollView,
+  View,
+} from 'react-native';
+
 import {
   Icon,
   Card,
@@ -14,6 +21,7 @@ const propTypes = {
 };
 
 class NotificationModal extends Component {
+
   constructor(props) {
     super(props);
 
@@ -124,8 +132,10 @@ class NotificationModal extends Component {
               containerStyle={{ overflow: 'scroll' }}
             >
 
-              <ScrollView style={{ maxHeight: 300 }}>
-                <HTMLView value={this.state.selectedNotif == null ? '' : this.state.selectedNotif.text} />
+              <ScrollView style={{ maxHeight: 500 }}>
+                <HTMLView
+                  value={this.state.selectedNotif == null ? '' : this.state.selectedNotif.text}
+                />
               </ScrollView>
 
               <ListView
