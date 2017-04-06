@@ -3519,10 +3519,6 @@ react-native-fcm@^2.5.5:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/react-native-fcm/-/react-native-fcm-2.5.6.tgz#4663c595e037c462ac474c5751556384f072e26b"
 
-react-native-firebase-auth@0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/react-native-firebase-auth/-/react-native-firebase-auth-0.0.11.tgz#997457f01efe192a101a19acffb9ce18c08becd1"
-
 react-native-google-signin@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-0.8.1.tgz#7b3c6898aadb2ceb964ebe725a2e85be223ef636"
