@@ -53,7 +53,6 @@ class NotificationList extends Component {
             title: ungroupedNotifsSnap.val().title,
             text: ungroupedNotifsSnap.val().text,
             html: ungroupedNotifsSnap.val().html,
-            groups: ungroupedNotifsSnap.val().groups,
             timeSent: ungroupedNotifsSnap.val().timeSent,
             read: notifInfo.read,
             key: notifInfoKey,
