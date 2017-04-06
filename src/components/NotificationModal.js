@@ -134,7 +134,7 @@ class NotificationModal extends Component {
 
               <ScrollView style={{ maxHeight: 500 }}>
                 <HTMLView
-                  value={this.state.selectedNotif == null ? '' : this.state.selectedNotif.text}
+                  value={this.state.selectedNotif == null ? '' : this.state.selectedNotif.html}
                 />
               </ScrollView>
 
