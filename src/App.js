@@ -78,15 +78,12 @@ class App extends Component {
           const newUserKey = usersRef.push().key; // this.usersRef.push().key;
           const userNotifsSchema = [
             {
-              notifKey: 't1',
-              starred: false,
+              notifKey: 'welcome',
               read: false,
-              ungroupedNotifs: false,
             },
           ];
           updates[`/users/${newUserKey}`] = {
             email: appUser.email,
-            roles: ['t1'],
             notifsInfo: userNotifsSchema,
             // store fcm token in our server and associate with the logged-in user
             fcmTokens: [token],
