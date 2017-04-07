@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const constants = {
-  actionColor2: '#969696',
-  actionColor: '#2599b2',
+  kironGrey: '#969696',
 };
 
 const styles = StyleSheet.create({
@@ -74,27 +73,6 @@ const styles = StyleSheet.create({
   },
   center: {
     textAlign: 'center',
-  },
-  actionText: {
-    color: '#fff',
-    fontSize: 14,
-    textAlign: 'center',
-  },
-  action: {
-    backgroundColor: constants.actionColor,
-    borderColor: 'transparent',
-    borderWidth: 1,
-    padding: 4,
-    margin: 2,
-    height: 30,
-  },
-  action2: {
-    backgroundColor: constants.actionColor2,
-    borderColor: 'transparent',
-    borderWidth: 1,
-    padding: 4,
-    margin: 2,
-    height: 30,
   },
   hideModal: {
     position: 'absolute',
