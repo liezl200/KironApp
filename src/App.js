@@ -14,7 +14,7 @@ import NotificationList from './components/NotificationList';
 import MenuListItem from './components/MenuListItem';
 import Spinner from './components/Spinner';
 
-import KironBrand from './img/kiron.png';
+import KironBrand from './img/kiron-white.png';
 import KironLogo from './img/k.png';
 
 import styles from './styles';
